@@ -59,5 +59,46 @@ xml
     
 '''
 
+# Get a value from the user.
+# A value is a int from a to b inclusive.
+# int, int, str -> int
+def get_value(a,b,name):
+    pass
+
+# Get a time from the user.
+# A time is a float.
+# str -> float
+def get_time(name):
+    pass
+
+# Gets a did? from the user.
+# A did? is a bool.
+# str -> bool
+def get_did?(name):
+    pass
+
+# Gets a note from the user.
+# A note is a str.
+# str -> str
+def get_note(name):
+    pass
+
+# Gets a key_event from the user.
+# A key_event is a str.
+# str -> str
+def get_key_event(name):
+    pass
+
+# Gets a state_change from the user.
+# A state_change in a str.
+# str -> str
+def get_state_change(name):
+    pass
+
+'''
+Plane: will use list of lambda functions to get user input
+'''
+
+
 def main():
     pass
