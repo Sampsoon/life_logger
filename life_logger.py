@@ -119,7 +119,8 @@ def config_to_functions(config):
 
         definition = line[1]
 
-        functions.append(lambda: type_to_input_functions[type](definition))
+        # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
+        functions.append(lambda type = type, definition = definition: type_to_input_functions[type](definition))
     return functions
 
 
