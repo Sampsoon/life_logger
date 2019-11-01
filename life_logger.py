@@ -22,18 +22,18 @@ Data def:
 
 My config:
 // emotions
-    value(0,3) Energy
-    value(0,3) Sociability
-    value(0,3) Melancholy
-    value(0,3) Self Assurance
-    value(0,3) Stress
-    value(0,3) Aggression
-    value(0,3) Longing
-    value(0,3) Contentness
-    value(0,3) Focus
-    value(0,3) Disgust
-    value(0,3) Passion For Life
-    value(0,3) Apreseation
+    value (0,3) Energy
+    value (0,3) Sociability
+    value (0,3) Melancholy
+    value (0,3) Self Assurance
+    value (0,3) Stress
+    value (0,3) Aggression
+    value (0,3) Longing
+    value (0,3) Contentness
+    value (0,3) Focus
+    value (0,3) Disgust
+    value (0,3) Passion For Life
+    value (0,3) Apreseation
 
 // Activity
     did? Meditate
@@ -41,11 +41,11 @@ My config:
     did? Got a Good Nights Sleep
     did? Read
     did? Worked on Side Project
-    value(0,3) Ate low carbs
-    value(0,3) Amount of Food Eaten
-    value(0,3) solsized
-    value(0,3) walked around white lost in thought
-    value(0,3) did school work
+    value (0,3) Ate low carbs
+    value (0,3) Amount of Food Eaten
+    value (0,3) solsized
+    value (0,3) walked around white lost in thought
+    value (0,3) did school work
 
 // Notes
     note things I learned
@@ -59,40 +59,48 @@ xml
     
 '''
 
+# A definition is the text following the type that defines the individual attributes of the type.
+
 # Get a value from the user.
 # A value is a int from a to b inclusive.
-# int, int, str -> int
-def get_value(a,b,name):
+# Signature in config: value (a,b) name
+# str -> int
+def get_value(definition):
     pass
 
 # Get a time from the user.
 # A time is a float.
+# Signature in config: time name
 # str -> float
-def get_time(name):
+def get_time(definition):
     pass
 
 # Gets a did? from the user.
 # A did? is a bool.
+# Signature in config: did? name
 # str -> bool
-def get_did?(name):
+def get_did?(definition):
     pass
 
 # Gets a note from the user.
 # A note is a str.
+# Signature in config: note name
 # str -> str
-def get_note(name):
+def get_note(definition):
     pass
 
 # Gets a key_event from the user.
 # A key_event is a str.
+# Signature in config: key_event name
 # str -> str
-def get_key_event(name):
+def get_key_event(definition):
     pass
 
 # Gets a state_change from the user.
 # A state_change in a str.
+# Signature in config: state_change name
 # str -> str
-def get_state_change(name):
+def get_state_change(definition):
     pass
 
 '''
