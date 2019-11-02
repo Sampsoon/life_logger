@@ -97,7 +97,7 @@ def get_key_event(definition):
     print("key event " + definition)
 
 # Gets a state_change from the user.
-# A state_change in a str.
+# A state_change is a str.
 # Signature in config: state_change name
 # str -> str
 def get_state_change(definition):
