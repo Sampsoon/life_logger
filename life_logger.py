@@ -124,7 +124,7 @@ def config_to_functions(config):
     return functions
 
 # Given a function and it's perameter returns a function object.
-# (str -> anything) str -> (none -> anything)
+# (str -> anything), str -> (none -> anything)
 def function_maker(input_func, definition):
     return lambda: input_func(definition)
 
