@@ -120,9 +120,13 @@ def config_to_functions(config):
         definition = line[1]
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
-        functions.append(lambda type = type, definition = definition: type_to_input_functions[type](definition))
+        functions.append(function_maker(type_to_input_functions[type], definition))
     return functions
 
+# Given a function and it's perameter returns a function object.
+# (str -> anything) str -> (none -> anything)
+def function_maker(input_func, definition):
+    return lambda: input_func(definition)
 
 # Checks that a given type is valid.
 # If not, throw an exception.
@@ -140,7 +144,7 @@ def check_config_line(line):
 
 # Returns a map of type names to input functions.
 # An input function is a fuc(str) -> str.
-# none -> map of str to (str -> str)
+# none -> map of str to (str -> anything)
 def get_type_map():
     return {
         "value" : get_value,
