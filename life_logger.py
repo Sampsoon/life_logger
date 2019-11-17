@@ -111,22 +111,43 @@ def config_to_functions(config):
     functions = []
 
     for line in config:
-        check_config_line(line)
-        line = line.split(" ", 1)
 
-        type = line[0]
+        # Skip the lines that are commented out.
+        if (is_line_commented(line)):
+            continue
+
+        check_config_line(line)
+
+        type = get_command_type(line)
         check_type(type)
 
-        definition = line[1]
+        definition = get_command_definition(line)
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
         functions.append(function_maker(type_to_input_functions[type], definition))
     return functions
 
+# Returns the command type.
+# str -> str
+def get_command_type(line):
+    line = line.split(" ", 1)
+    return line[0]
+
+# Returns the command definition.
+# str -> str
+def get_command_definition(line):
+    line = line.split(" ", 1)
+    return line[1]
+
+# Returns true if the given line was commented out.
+# str -> bool
+def is_line_commented(line):
+    return len(line) >= 2 and line[0:2] == "//"
+
 # Given a function and it's perameter returns a function object.
 # (str -> anything), str -> (none -> anything)
-def function_maker(input_func, definition):
-    return lambda: input_func(definition)
+def function_maker(input_func, perameter):
+    return lambda: input_func(perameter)
 
 # Checks that a given type is valid.
 # If not, throw an exception.
