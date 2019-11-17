@@ -62,44 +62,50 @@ xml
 # A definition is the text following space after the type name.
 
 # Get a value from the user.
+# Returns it along with label for the value.
 # A value is a int from a to b inclusive.
 # Signature in config: value (a,b) name
-# str -> int
+# str -> (str, int)
 def get_value(definition):
     print("value " + definition)
 
 # Get a time from the user.
+# Returns it along with label for the value.
 # A time is a float.
 # Signature in config: time name
-# str -> float
+# str -> (str, float)
 def get_time(definition):
     print("time " + definition)
 
-# Gets a did? from the user.
+# Gets a did_do from the user.
+# Returns it along with label for the value.
 # A did_do is a bool.
 # Signature in config: did_do name
-# str -> bool
+# str -> (str, bool)
 def get_did_do(definition):
     print("did do " + definition)
 
 # Gets a note from the user.
+# Returns it along with label for the value.
 # A note is a str.
 # Signature in config: note name
-# str -> str
+# str -> (str, str)
 def get_note(definition):
     print("get note " + definition)
 
 # Gets a key_event from the user.
+# Returns it along with label for the value.
 # A key_event is a str.
 # Signature in config: key_event name
-# str -> str
+# str -> (str, str)
 def get_key_event(definition):
     print("key event " + definition)
 
 # Gets a state_change from the user.
+# Returns it along with label for the value.
 # A state_change is a str.
 # Signature in config: state_change name
-# str -> str
+# str -> (str, str)
 def get_state_change(definition):
     print("state change " + definition)
 
@@ -125,6 +131,7 @@ def config_to_functions(config):
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
         functions.append(function_maker(type_to_input_functions[type], definition))
+
     return functions
 
 # Returns the command type.
@@ -164,7 +171,6 @@ def check_config_line(line):
         raise ValueError("Invalid config line: " + line)
 
 # Returns a map of type names to input functions.
-# An input function is a fuc(str) -> str.
 # none -> map of str to (str -> anything)
 def get_type_map():
     return {
