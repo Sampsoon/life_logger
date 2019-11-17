@@ -59,6 +59,8 @@ output:
 xml
     
 '''
+# TODO: CHECK VALIDITY OF DEFINITIONS
+
 
 # A definition is the text following space after the type name.
 
@@ -68,7 +70,57 @@ xml
 # Signature in config: value (a,b) label
 # str -> (label: str, value: int)
 def user_enter_value(definition):
-    print("value " + definition)
+    label = get_value_label(definition)
+    range = get_value_range(definition)
+    a = range[0]
+    b = range[1]
+
+    inclusive_exclusive = 'From a scale from {} inclusive to {} exclusive, '.format(a,b)
+    question = inclusive_exclusive + 'how would you rate your {}'.format(label)
+    print(question)
+    response = user_enter_value_response()
+
+    while (not is_valid_value(response, a, b)):
+        print('Please enter a valid response')
+        print('A valid response is a integer ' + inclusive_exclusive.lower())
+        response = user_enter_value_response()
+
+    value = get_value_from_response(response)
+
+    return (label, value)
+
+# Prompts the user to enter a value response.
+# nothing -> str
+def user_enter_value_response():
+    return input('Value: ')
+
+# Given a value definition, returns its label.
+# str -> str
+def get_value_label(definition):
+    return definition.split(' ')[1]
+
+# Given a value definition, returns its range.
+# str -> (int, int)
+def get_value_range(definition):
+    range = definition.split(' ')[0]
+    values = range.split(',')
+    a = values[0][1:]
+    b = values[1][:-1]
+    return (int(a), int(b))
+
+# Given a user response and a range of numbers,
+# Returns if the response in a int and that in falls in range of [a, b)
+# str, number, number -> bool
+def is_valid_value(response, a, b):
+    if response.isdigit():
+        value = get_value_from_response(response)
+        return value >= a and value < b
+    return False
+
+# Returns true if a boolean response is valid.
+# str -> int
+def get_value_from_response(response):
+    return int(response)
 
 # Get a time from the user.
 # Returns it along with label for the value.
@@ -82,40 +134,42 @@ def user_enter_time(definition):
 # Returns it along with label for the value.
 # A did_do is a bool.
 # Signature in config: did_do label
-# str -> ((label: str, value: bool)
+# str -> (label: str, value: bool)
 def user_enter_did_do(definition):
-    response = user_enter_initial_did_do_response(definition)
+
+    label = get_did_do_label(definition)
+
+    print('Did you {}?'.format(label))
+    response = user_enter_boolean_response()
 
     while (not is_valid_boolean_response(response)):
-        response = user_enter_did_do_response_after_bad_response().lower()
+        print('Please enter a valid response')
+        print('A valid response is eather "y" for True or "n" for False.')
+        response = user_enter_boolean_response()
 
-    bool_response = get_bool_response(response)
+    bool_response = get_bool_from_response(response)
 
-    return (definition, bool_response)
+    return (label, bool_response)
 
-# Gets a response from the user on weather than did something
-# After they have already entered an invalid respones before.
-# none -> str 
-def user_enter_did_do_response_after_bad_response():
-    print("Please enter a valid response")
-    print("A valid response is eather \"y\" for True or \"n\" for False.")
-    return input("(y/n)")
-
-# Gets a response from the user on weather than did something.
-# str -> str 
-def user_enter_initial_did_do_response(definition):
-    print("Did you {}?".format(definition))
-    response = input("(y/n)")
-    return response
+# Prompts the user to enter a boolean response and returns its value in lower case.
+# nothing -> str
+def user_enter_boolean_response():
+    return input('(y/n)').lower()
+    
+# Given a valid did do, returns its label.
+# str -> str
+def get_did_do_label(definition):
+    return definition
 
 # Given a valid bool response, returns the response in boolean form.
 # str -> bool
-def get_bool_response(response):
-    return response == "y"
+def get_bool_from_response(response):
+    return response == 'y'
 
 # Returns true if a boolean response is valid.
+# str -> bool
 def is_valid_boolean_response(response):
-    return response == "n" or response == "y"
+    return response == 'n' or response == 'y'
 
 # Gets a note from the user.
 # Returns it along with label for the value.
@@ -169,13 +223,13 @@ def config_to_functions(config):
 # Returns the command type.
 # str -> str
 def get_command_type(line):
-    line = line.split(" ", 1)
+    line = line.split(' ', 1)
     return line[0]
 
 # Returns the command definition.
 # str -> str
 def get_command_definition(line):
-    line = line.split(" ", 1)
+    line = line.split(' ', 1)
     return line[1]
 
 # Returns true if the given line was commented out.
@@ -193,31 +247,31 @@ def function_maker(input_func, perameter):
 # str -> none or error
 def check_type(type):
     if type not in get_type_map():
-        raise ValueError(type + " is not a valid type")
+        raise ValueError(type + ' is not a valid type')
 
 # Checks that a given line in the config is valid.
 # If not, throw an exception.
 # str -> none or error
 def check_config_line(line):
-    if len(line.split(" ", 1)) == 1:
-        raise ValueError("Invalid config line: " + line)
+    if len(line.split(' ', 1)) == 1:
+        raise ValueError('Invalid config line: ' + line)
 
 # Returns a map of type names to input functions.
 # none -> map of str to (str -> anything)
 def get_type_map():
     return {
-        "value" : user_enter_value,
-        "time" : user_enter_time,
-        "did_do" : user_enter_did_do,
-        "note" : user_enter_note,
-        "key_event" : user_enter_key_event,
-        "state_change" : user_enter_state_change
+        'value' : user_enter_value,
+        'time' : user_enter_time,
+        'did_do' : user_enter_did_do,
+        'note' : user_enter_note,
+        'key_event' : user_enter_key_event,
+        'state_change' : user_enter_state_change
         }
 
 # Runs the program.
 def main():
 
-    mockConfig = ["value (a,b) stuff", "time Some stuff", "did_do otherStuff"]
+    mockConfig = ['value (0,10) stuff", "time Some stuff", "did_do otherStuff']
 
     input_functions = config_to_functions(mockConfig)
 
