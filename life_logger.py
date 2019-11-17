@@ -59,7 +59,7 @@ output:
 xml
     
 '''
-# TODO: CHECK VALIDITY OF DEFINITIONS
+# TODO: CHECK VALIDITY OF DEFINITIONS... probs put in a function call that returns user_enter***
 
 
 # A definition is the text following space after the type name.
