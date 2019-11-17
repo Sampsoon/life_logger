@@ -84,28 +84,26 @@ def user_enter_time(definition):
 # Signature in config: did_do label
 # str -> (str, bool)
 def user_enter_did_do(definition):
-    response = user_enter_initial_boolean_response(definition)
+    response = user_enter_initial_did_do_response(definition)
 
     while (not is_valid_boolean_response(response)):
-        response = user_enter_boolean_response_after_bad_response().lower()
+        response = user_enter_did_do_response_after_bad_response().lower()
 
     bool_response = get_bool_response(response)
 
-    print(bool_response)
-    
     return (definition, bool_response)
 
 # Gets a response from the user on weather than did something
 # After they have already entered an invalid respones before.
 # none -> str 
-def user_enter_boolean_response_after_bad_response():
+def user_enter_did_do_response_after_bad_response():
     print("Please enter a valid response")
     print("A valid response is eather \"y\" for True or \"n\" for False.")
     return input("(y/n)")
 
 # Gets a response from the user on weather than did something.
 # str -> str 
-def user_enter_initial_boolean_response(definition):
+def user_enter_initial_did_do_response(definition):
     print("Did you {}?".format(definition))
     response = input("(y/n)")
     return response
