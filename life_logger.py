@@ -1,4 +1,5 @@
 import sys
+import constants
 
 
 '''
@@ -66,7 +67,7 @@ xml
 # A value is a int from a to b inclusive.
 # Signature in config: value (a,b) label
 # str -> (str, int)
-def get_value(definition):
+def user_enter_value(definition):
     print("value " + definition)
 
 # Get a time from the user.
@@ -74,7 +75,7 @@ def get_value(definition):
 # A time is a float.
 # Signature in config: time label
 # str -> (str, float)
-def get_time(definition):
+def user_enter_time(definition):
     print("time " + definition)
 
 # Gets a did_do from the user.
@@ -82,17 +83,48 @@ def get_time(definition):
 # A did_do is a bool.
 # Signature in config: did_do label
 # str -> (str, bool)
-def get_did_do(definition):
+def user_enter_did_do(definition):
+    response = user_enter_initial_boolean_response(definition)
 
+    while (not is_valid_boolean_response(response)):
+        response = user_enter_boolean_response_after_bad_response().lower()
 
-    print("did do " + definition)
+    bool_response = get_bool_response(response)
+
+    print(bool_response)
+    
+    return (definition, bool_response)
+
+# Gets a response from the user on weather than did something
+# After they have already entered an invalid respones before.
+# none -> str 
+def user_enter_boolean_response_after_bad_response():
+    print("Please enter a valid response")
+    print("A valid response is eather \"y\" for True or \"n\" for False.")
+    return input("(y/n)")
+
+# Gets a response from the user on weather than did something.
+# str -> str 
+def user_enter_initial_boolean_response(definition):
+    print("Did you {}?".format(definition))
+    response = input("(y/n)")
+    return response
+
+# Given a valid bool response, returns the response in boolean form.
+# str -> bool
+def get_bool_response(response):
+    return response == "y"
+
+# Returns true if a boolean response is valid.
+def is_valid_boolean_response(response):
+    return response == "n" or response == "y"
 
 # Gets a note from the user.
 # Returns it along with label for the value.
 # A note is a str.
 # Signature in config: note label
 # str -> (str, str)
-def get_note(definition):
+def user_enter_note(definition):
     print("get note " + definition)
 
 # Gets a key_event from the user.
@@ -100,7 +132,7 @@ def get_note(definition):
 # A key_event is a str.
 # Signature in config: key_event label
 # str -> (str, str)
-def get_key_event(definition):
+def user_enter_key_event(definition):
     print("key event " + definition)
 
 # Gets a state_change from the user.
@@ -108,7 +140,7 @@ def get_key_event(definition):
 # A state_change is a str.
 # Signature in config: state_change label
 # str -> (str, str)
-def get_state_change(definition):
+def user_enter_state_change(definition):
     print("state change " + definition)
 
 # Takes in the data for a config and returns a list of functions to call the meet it's criteria.
@@ -151,7 +183,7 @@ def get_command_definition(line):
 # Returns true if the given line was commented out.
 # str -> bool
 def is_line_commented(line):
-    return len(line) >= 2 and line[0:2] == "//"
+    return len(line) >= 2 and line[0:2] == constants.COMMENT_OUT_STRING
 
 # Given a function and it's perameter returns a function object.
 # (str -> anything), str -> (none -> anything)
@@ -160,14 +192,14 @@ def function_maker(input_func, perameter):
 
 # Checks that a given type is valid.
 # If not, throw an exception.
-# str -> none
+# str -> none or error
 def check_type(type):
     if type not in get_type_map():
         raise ValueError(type + " is not a valid type")
 
 # Checks that a given line in the config is valid.
 # If not, throw an exception.
-# str -> none
+# str -> none or error
 def check_config_line(line):
     if len(line.split(" ", 1)) == 1:
         raise ValueError("Invalid config line: " + line)
@@ -176,12 +208,12 @@ def check_config_line(line):
 # none -> map of str to (str -> anything)
 def get_type_map():
     return {
-        "value" : get_value,
-        "time" : get_time,
-        "did_do" : get_did_do,
-        "note" : get_note,
-        "key_event" : get_key_event,
-        "state_change" : get_state_change
+        "value" : user_enter_value,
+        "time" : user_enter_time,
+        "did_do" : user_enter_did_do,
+        "note" : user_enter_note,
+        "key_event" : user_enter_key_event,
+        "state_change" : user_enter_state_change
         }
 
 # Runs the program.
