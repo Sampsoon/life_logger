@@ -66,7 +66,7 @@ xml
 # Returns it along with label for the value.
 # A value is a int from a to b inclusive.
 # Signature in config: value (a,b) label
-# str -> (str, int)
+# str -> (label: str, value: int)
 def user_enter_value(definition):
     print("value " + definition)
 
@@ -74,7 +74,7 @@ def user_enter_value(definition):
 # Returns it along with label for the value.
 # A time is a float.
 # Signature in config: time label
-# str -> (str, float)
+# str -> (label: str, value: float)
 def user_enter_time(definition):
     print("time " + definition)
 
@@ -82,7 +82,7 @@ def user_enter_time(definition):
 # Returns it along with label for the value.
 # A did_do is a bool.
 # Signature in config: did_do label
-# str -> (str, bool)
+# str -> ((label: str, value: bool)
 def user_enter_did_do(definition):
     response = user_enter_initial_did_do_response(definition)
 
@@ -121,7 +121,7 @@ def is_valid_boolean_response(response):
 # Returns it along with label for the value.
 # A note is a str.
 # Signature in config: note label
-# str -> (str, str)
+# str -> (label: str, value: str)
 def user_enter_note(definition):
     print("get note " + definition)
 
@@ -129,7 +129,7 @@ def user_enter_note(definition):
 # Returns it along with label for the value.
 # A key_event is a str.
 # Signature in config: key_event label
-# str -> (str, str)
+# str -> (label: str, value: str)
 def user_enter_key_event(definition):
     print("key event " + definition)
 
@@ -137,7 +137,7 @@ def user_enter_key_event(definition):
 # Returns it along with label for the value.
 # A state_change is a str.
 # Signature in config: state_change label
-# str -> (str, str)
+# str -> (label: str, value: str)
 def user_enter_state_change(definition):
     print("state change " + definition)
 
