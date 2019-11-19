@@ -1,64 +1,6 @@
 import sys
 import constants
 
-
-'''
-Event types:
-
-Will need:
-- Config file for things to track
-- A way to visualize data
-- Some premade analisis using ML and data science algo
-- A way to log data in the consol
-
-Data def:
-    - value(a,b) (integer from 0 to 10 inclusive)
-    - time (number in hours)
-    - did_do ("y" or "n")
-    - note (string)
-    - keyevent (string)
-    - stateChange: (string)
-        When my current living state changes. This data will be carried to every new log unless
-        specified otherwise
-
-My config:
-// emotions
-    value (0,3) Energy
-    value (0,3) Sociability
-    value (0,3) Melancholy
-    value (0,3) Self Assurance
-    value (0,3) Stress
-    value (0,3) Aggression
-    value (0,3) Longing
-    value (0,3) Contentness
-    value (0,3) Focus
-    value (0,3) Disgust
-    value (0,3) Passion For Life
-    value (0,3) Appreciation
-
-// Activity
-    did_do Meditate
-    did_do Exercised
-    did_do Got a Good Nights Sleep
-    did_do Read
-    did_do Worked on Side Project
-    value (0,3) Ate low carbs
-    value (0,3) Amount of Food Eaten
-    value (0,3) socialized
-    value (0,3) walked around white lost in thought
-    value (0,3) did school work
-
-// Notes
-    note things I learned
-    note notworthy stuff
-    keyevent key events
-    sateChange housing
-    sateChange school, work, ect...
-
-output:
-xml
-    
-'''
 # TODO: CHECK VALIDITY OF DEFINITIONS... probs put in a function call that returns user_enter***
 
 
@@ -149,8 +91,53 @@ def user_enter_time(definition):
     Signature in config: time label
     str -> (label: str, value: float)
     """
-    print("time " + definition)
+    label = get_time_label(definition)
+    
+    print('How long did you {}?'.format(label))
+    response = user_enter_time()
+    
+    while not is_valid_time_response(response):
+        print('Please enter a valid response')
+        print('A valid response is a number')
+        response = user_enter_time()
+    
+    time = get_time_from_response(response)
+    
+    return (label, time)
 
+
+def get_time_from_response(response):
+    """
+    Gets the time from a valid time response.
+    str -> float
+    """
+    return float(response)
+    
+
+def is_valid_time_response(response):
+    """
+    Returns true if a time response is valid.
+    str -> bool
+    """
+    try:
+        float(response)
+        return True
+    except ValueError:
+        return False
+
+def user_enter_time():
+    """
+    Prompts the user to enter a time response.
+    nothing -> str
+    """
+    return input('hours: ')
+    
+def get_time_label(definition):
+    """
+    Given a valid time definition, returns its label.
+    str -> str
+    """
+    return definition
 
 def user_enter_did_do(definition):
     """
@@ -186,7 +173,7 @@ def user_enter_boolean_response():
 
 def get_did_do_label(definition):
     """
-    Given a valid did do, returns its label.
+    Given a valid did do definition, returns its label.
     str -> str
     """
     return definition
@@ -216,7 +203,7 @@ def user_enter_note(definition):
     Signature in config: note label
     str -> (label: str, value: str)
     """
-    print("get note " + definition)
+    pass
 
 
 def user_enter_key_event(definition):
@@ -227,7 +214,7 @@ def user_enter_key_event(definition):
     Signature in config: key_event label
     str -> (label: str, value: str)
     """
-    print("key event " + definition)
+    pass
 
 
 def user_enter_state_change(definition):
@@ -238,7 +225,7 @@ def user_enter_state_change(definition):
     Signature in config: state_change label
     str -> (label: str, value: str)
     """
-    print("state change " + definition)
+    pass
 
 
 def config_to_functions(config):
@@ -349,5 +336,3 @@ def main():
 
     for func in input_functions:
         func()
-
-main()
