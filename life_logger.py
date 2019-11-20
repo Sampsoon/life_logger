@@ -254,7 +254,7 @@ def user_enter_note(definition):
 
 def get_note_from_response(response):
     """
-    Gets the time from a valid time response.
+    Gets the note from a valid note response.
     str -> float
     """
     return float(response)
@@ -288,7 +288,60 @@ def user_enter_key_event(definition):
     Signature in config: key_event label
     str -> (label: str, value: str)
     """
-    pass
+    
+    update_question = 'Have any important events occurred consurning {}?'
+    valid_update_respones = 'A valid response is eather "y" for True or "n" for False.'
+    
+    update = user_enter(get_key_event_label, 
+                      user_enter_boolean_response, 
+                      get_bool_from_response,
+                      is_valid_boolean_response,
+                      update_question,
+                      valid_update_respones,
+                      definition)
+    
+    # If the user enters "yes"
+    if update[1]:
+        return (update[0], '')
+    
+    question = 'Enter your event(s)?'
+    valid = 'A valid response is a any text.'
+
+    return user_enter(get_key_event_label, 
+                      user_enter_key_event_response, 
+                      get_key_event_from_response,
+                      is_valid_key_event_response,
+                      question,
+                      valid,
+                      definition)
+
+def get_key_event_label(definition):
+    """
+    Given a valid key event definition, returns its label.
+    str -> str
+    """
+    return definition
+
+def user_enter_key_event_response():
+    """
+    Prompts the user to enter a key event response.
+    nothing -> str
+    """
+    return input('>> ')
+
+def get_key_event_from_response(response):
+    """
+    Gets the key event from a valid key event response.
+    str -> float
+    """
+    return response
+
+def is_valid_key_event_response(response):
+    """
+    Returns true if a key event response is valid.
+    str -> bool
+    """
+    return len(response) > 0
 
 def user_enter_state_change(definition):
     """
@@ -298,8 +351,59 @@ def user_enter_state_change(definition):
     Signature in config: state_change label
     str -> (label: str, value: str)
     """
-    pass
+    update_question = 'Have any important events occurred consurning {}?'
+    valid_update_respones = 'A valid response is eather "y" for True or "n" for False.'
+    
+    update = user_enter(get_key_event_label, 
+                      user_enter_boolean_response, 
+                      get_bool_from_response,
+                      is_valid_boolean_response,
+                      update_question,
+                      valid_update_respones,
+                      definition)
+    
+    # If the user enters "yes"
+    if update[1]:
+        return (update[0], '')
+    
+    question = 'Enter your event(s)?'
+    valid = 'A valid response is a any text.'
 
+    return user_enter(get_state_change_label, 
+                      user_enter_state_change_response, 
+                      get_state_change_from_response,
+                      is_valid_state_change_response,
+                      question,
+                      valid,
+                      definition)
+
+def get_state_change_label(definition):
+    """
+    Given a valid key event definition, returns its label.
+    str -> str
+    """
+    return definition
+
+def user_enter_state_change_response():
+    """
+    Prompts the user to enter a key event response.
+    nothing -> str
+    """
+    return input('>> ')
+
+def get_state_change_from_response(response):
+    """
+    Gets the key event from a valid key event response.
+    str -> float
+    """
+    return response
+
+def is_valid_state_change_response(response):
+    """
+    Returns true if a key event response is valid.
+    str -> bool
+    """
+    return len(response) > 0
 
 def config_to_functions(config):
     """
@@ -403,7 +507,7 @@ def main():
     Runs the program.
     """
 
-    mock_config = ['value (0,10) stuff", "time Some stuff", "did_do otherStuff']
+    mock_config = ['value (0,10) stuff", "time Some stuff", "did_do otherStuff', 'key_event event', 'state_change change', 'note notworthy thing']
 
     input_functions = config_to_functions(mock_config)
 
