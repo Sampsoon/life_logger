@@ -205,7 +205,7 @@ def user_enter_boolean_response():
     Prompts the user to enter a boolean response and returns its value in lower case.
     nothing -> str
     """
-    return input('(y/n)').lower()
+    return input('(y/n) ').lower()
     
 
 def get_did_do_label(definition):
@@ -257,7 +257,7 @@ def get_note_from_response(response):
     Gets the note from a valid note response.
     str -> float
     """
-    return float(response)
+    return response
 
 def is_valid_note_response(response):
     """
@@ -301,7 +301,7 @@ def user_enter_key_event(definition):
                       definition)
     
     # If the user enters "yes"
-    if update[1]:
+    if not update[1]:
         return (update[0], '')
     
     question = 'Enter your event(s)?'
@@ -363,7 +363,7 @@ def user_enter_state_change(definition):
                       definition)
     
     # If the user enters "yes"
-    if update[1]:
+    if not update[1]:
         return (update[0], '')
     
     question = 'Enter your event(s)?'
@@ -507,9 +507,11 @@ def main():
     Runs the program.
     """
 
-    mock_config = ['value (0,10) stuff", "time Some stuff", "did_do otherStuff', 'key_event event', 'state_change change', 'note notworthy thing']
+    mock_config = ['value (0,10) stuff", "//hello" "time Some stuff", "did_do otherStuff', 'key_event event', 'state_change change', 'note notworthy thing']
 
     input_functions = config_to_functions(mock_config)
 
     for func in input_functions:
         func()
+
+main()
