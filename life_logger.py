@@ -38,7 +38,7 @@ def user_enter(get_label,
 
     label = get_label(definition)
     
-    print(opening_question.format(label))
+    print(opening_question_text.format(label))
     response = user_enter_response()
 
     while not is_valid_data(response):
@@ -71,7 +71,8 @@ def user_enter_value(definition):
     is_valid = lambda response: is_valid_value(response, a, b)
     
     return user_enter(get_value_label, 
-                      user_enter_value_response, 
+                      user_enter_value_response,
+                      get_value_from_response,
                       is_valid,
                       question,
                       valid,
@@ -124,7 +125,6 @@ def get_value_from_response(response):
     """
     return int(response)
 
-
 def user_enter_time(definition):
     """
     Get a time from the user.
@@ -138,7 +138,8 @@ def user_enter_time(definition):
     valid = 'A valid response is a number'
 
     return user_enter(get_time_label, 
-                      user_enter_time, 
+                      user_enter_time_response,
+                      get_time_from_response,
                       is_valid_time_response,
                       question,
                       valid,
@@ -164,7 +165,7 @@ def is_valid_time_response(response):
     except ValueError:
         return False
 
-def user_enter_time():
+def user_enter_time_response():
     """
     Prompts the user to enter a time response.
     nothing -> str
@@ -192,6 +193,7 @@ def user_enter_did_do(definition):
 
     return user_enter(get_did_do_label, 
                       user_enter_boolean_response, 
+                      get_bool_from_response,
                       is_valid_boolean_response,
                       question,
                       valid,
@@ -242,7 +244,8 @@ def user_enter_note(definition):
     valid = 'A valid response is a anything...I don\'t know how you got here'
 
     return user_enter(get_note_label, 
-                      user_enter_note, 
+                      user_enter_note_response, 
+                      get_note_from_response,
                       is_valid_note_response,
                       question,
                       valid,
@@ -263,7 +266,7 @@ def is_valid_note_response(response):
     """
     return True
 
-def user_enter_note():
+def user_enter_note_response():
     """
     Prompts the user to enter a note response.
     nothing -> str
@@ -276,7 +279,6 @@ def get_note_label(definition):
     str -> str
     """
     return definition
-
 
 def user_enter_key_event(definition):
     """
