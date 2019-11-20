@@ -194,7 +194,6 @@ def is_valid_boolean_response(response):
     """
     return response == 'n' or response == 'y'
 
-
 def user_enter_note(definition):
     """
     Gets a note from the user.
@@ -203,8 +202,50 @@ def user_enter_note(definition):
     Signature in config: note label
     str -> (label: str, value: str)
     """
-    pass
+    label = get_note_label(definition)
+    
+    print('What notes if any do you have for {}?'.format(label))
+    response = user_enter_note()
+    
+    while not is_valid_note_response(response):
+        print('Please enter a valid response')
+        print('A valid response is a anything...I don't know how you got here')
+        response = user_enter_note()
+    
+    note = get_note_from_response(response)
+    
+    return (label, note)
 
+
+def get_note_from_response(response):
+    """
+    Gets the time from a valid time response.
+    str -> float
+    """
+    return float(response)
+
+def is_valid_note_response(response):
+    """
+    Returns true if a note response is valid.
+    str -> bool
+    """
+    return True
+
+def user_enter_note():
+    """
+    Prompts the user to enter a note response.
+    nothing -> str
+    """
+    return input('>> ')
+    
+def get_note_label(definition):
+    """
+    Given a valid note definition, returns its label.
+    str -> str
+    """
+    return definition
+
+#------------------------------------------------------------------------------------
 
 def user_enter_key_event(definition):
     """
@@ -214,8 +255,51 @@ def user_enter_key_event(definition):
     Signature in config: key_event label
     str -> (label: str, value: str)
     """
-    pass
+    label = get_note_label(definition)
+    
+    print('What notes if any do you have for {}?'.format(label))
+    response = user_enter_note()
+    
+    while not is_valid_note_response(response):
+        print('Please enter a valid response')
+        print('A valid response is a anything...I don't know how you got here')
+        response = user_enter_note()
+    
+    note = get_note_from_response(response)
+    
+    return (label, note)
 
+
+def get_note_from_response(response):
+    """
+    Gets the time from a valid time response.
+    str -> float
+    """
+    return float(response)
+
+def is_valid_note_response(response):
+    """
+    Returns true if a note response is valid.
+    str -> bool
+    """
+    return True
+
+def user_enter_note():
+    """
+    Prompts the user to enter a note response.
+    nothing -> str
+    """
+    return input('>> ')
+    
+def get_note_label(definition):
+    """
+    Given a valid note definition, returns its label.
+    str -> str
+    """
+    return definition
+
+
+#------------------------------------------------------------------------------------
 
 def user_enter_state_change(definition):
     """
