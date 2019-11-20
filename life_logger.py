@@ -64,7 +64,7 @@ def user_enter_value(definition):
     b = number_range[1]
 
     inclusive_exclusive = 'From a scale from {} inclusive to {} exclusive, '.format(a,b)
-    question = inclusive_exclusive + 'how would you rate your {}'
+    question = inclusive_exclusive + 'how would you rate your {}?'
 
     valid = 'A valid response is a integer ' + inclusive_exclusive.lower()
     
@@ -507,11 +507,20 @@ def main():
     Runs the program.
     """
 
-    mock_config = ['value (0,10) stuff", "//hello" "time Some stuff", "did_do otherStuff', 'key_event event', 'state_change change', 'note notworthy thing']
+    mock_config = ['value (0,10) stuff', '//hello', 'time Some stuff', 'did_do otherStuff', 'key_event event', 'state_change change', 'note notworthy thing']
 
     input_functions = config_to_functions(mock_config)
-
+    
+    data = []
+    
+    print(constants.NEW_LINE)
+    print(constants.LINE)
+    print("WELCOME TO LIFE LOGGER")
+    print(constants.LINE)
+    print()
+    
     for func in input_functions:
-        func()
+        data.append(func())
+        print('\n----------------------------\n')
 
 main()
