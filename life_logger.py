@@ -279,6 +279,13 @@ def get_note_label(definition):
 
 
 def user_enter_key_event(definition):
+    """
+    Gets a key_event from the user.
+    Returns it along with label for the value.
+    A key_event is a str.
+    Signature in config: key_event label
+    str -> (label: str, value: str)
+    """
     pass
 
 def user_enter_state_change(definition):
