@@ -42,7 +42,8 @@ def user_enter(get_label,
     response = user_enter_response()
 
     while not is_valid_data(response):
-        print('Please enter a valid response')
+        print()
+        print('Please enter a valid response.')
         print(valid_respones_text)
         response = user_enter_response()
 
@@ -135,7 +136,7 @@ def user_enter_time(definition):
     """
     
     question = 'How long did you {}?'
-    valid = 'A valid response is a number'
+    valid = 'A valid response is a number >= 0'
 
     return user_enter(get_time_label, 
                       user_enter_time_response,
@@ -160,8 +161,7 @@ def is_valid_time_response(response):
     str -> bool
     """
     try:
-        float(response)
-        return True
+        return float(response) >= 0
     except ValueError:
         return False
 
