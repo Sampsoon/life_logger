@@ -27,7 +27,6 @@ def user_enter_boolean_response():
     nothing -> str
     """
     return input('(y/n) ').lower()
-    
 
 def get_did_do_label(definition):
     """
@@ -36,14 +35,12 @@ def get_did_do_label(definition):
     """
     return definition
 
-
 def get_bool_from_response(response):
     """
     Given a valid bool response, returns the response in boolean form.
     str -> bool
     """
     return response == 'y'
-
 
 def is_valid_boolean_response(response):
     """

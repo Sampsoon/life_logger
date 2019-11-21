@@ -28,7 +28,6 @@ def get_time_from_response(response):
     """
     return float(response)
     
-
 def is_valid_time_response(response):
     """
     Returns true if a time response is valid.

@@ -35,14 +35,12 @@ def user_enter_value_response():
     """
     return input('Value: ')
 
-
 def get_value_label(definition):
     """
     Given a value definition, returns its label.
     str -> str
     """
     return definition.split(' ')[1]
-
 
 def get_value_range(definition):
     """
@@ -55,7 +53,6 @@ def get_value_range(definition):
     b = values[1][:-1]
     return (int(a), int(b))
 
-
 def is_valid_value(response, a, b):
     """
     Given a user response and a range of numbers,
@@ -66,7 +63,6 @@ def is_valid_value(response, a, b):
         value = get_value_from_response(response)
         return value >= a and value < b
     return False
-
 
 def get_value_from_response(response):
     """
