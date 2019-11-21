@@ -65,16 +65,15 @@ def config_to_functions(config):
 
         check_config_line(line)
 
-        type = get_command_type(line)
-        check_type(type)
+        command_type = get_command_type(line)
+        check_type(command_type)
 
         definition = get_command_definition(line)
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
-        functions.append(function_maker(type_to_input_functions[type], definition))
+        functions.append(function_maker(type_to_input_functions[command_type], definition))
 
     return functions
-
 
 def get_command_type(line):
     """
@@ -84,7 +83,6 @@ def get_command_type(line):
     line = line.split(' ', 1)
     return line[0]
 
-
 def get_command_definition(line):
     """
     Returns the command definition.
@@ -93,7 +91,6 @@ def get_command_definition(line):
     line = line.split(' ', 1)
     return line[1]
 
-
 def is_line_commented(line):
     """
     Returns true if the given line was commented out.
@@ -101,14 +98,12 @@ def is_line_commented(line):
     """
     return len(line) >= 2 and line[0:2] == constants.COMMENT_OUT_STRING
 
-
 def function_maker(input_func, perameter):
     """
     Given a function and it's perameter returns a function object.
     (str -> anything), str -> (none -> anything)
     """
     return lambda: input_func(perameter)
-
 
 def check_type(type):
     """
@@ -118,7 +113,6 @@ def check_type(type):
     """
     if type not in constants.TYPE_MAP:
         raise ValueError(type + ' is not a valid type')
-
 
 def check_config_line(line):
     """
