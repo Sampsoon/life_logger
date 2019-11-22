@@ -71,7 +71,7 @@ def config_to_functions(config):
         definition = get_command_definition(line)
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
-        functions.append(function_maker(type_to_input_functions[command_type], definition))
+        functions.append(type_to_input_functions[command_type](definition))
 
     return functions
 
@@ -98,12 +98,16 @@ def is_line_commented(line):
     """
     return len(line) >= 2 and line[0:2] == constants.COMMENT_OUT_STRING
 
-def function_maker(input_func, perameter):
+def function_maker(input_func, perameter, perameter_verifier, exception_message):
     """
-    Given a function and it's perameter returns a function object.
+    Checks that a given peramater is valid. If so return
+    a function and it's perameter returned as function object. Else, raise an exception.
     (str -> anything), str -> (none -> anything)
     """
-    return lambda: input_func(perameter)
+    if perameter_verifier(perameter):
+        return lambda: input_func(perameter)
+    
+    raise ValueError(exception_message)
 
 def check_type(type):
     """

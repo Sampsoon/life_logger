@@ -1,4 +1,21 @@
-from life_logger_utils import user_enter
+from life_logger_utils import user_enter, function_maker
+
+def build_note_function(definition):
+    """
+    Builds a function that gets the the data for a note from the user.
+    Raises an error if the definition is not valid.
+    str -> () -> int or error
+    """
+    return function_maker(user_enter_note, 
+                          definition, is_valid_note_definition, 
+                          "Not a valid note definition: " + definition)
+
+def is_valid_note_definition(definition):
+    """
+    Returns true if the note definition in valid.
+    str -> bool
+    """
+    return True
 
 def user_enter_note(definition):
     """

@@ -1,4 +1,21 @@
-from life_logger_utils import user_enter
+from life_logger_utils import user_enter, function_maker
+
+def build_value_function(definition):
+    """
+    Builds a function that gets the the data for a value from the user.
+    Raises an error if the definition is not valid.
+    str -> () -> int or error
+    """
+    return function_maker(user_enter_value, 
+                          definition, is_valid_value_definition, 
+                          "Not a valid value definition: " + definition)
+
+def is_valid_value_definition(definition):
+    """
+    Returns true if the value definition in valid.
+    str -> bool
+    """
+    return True
 
 def user_enter_value(definition):
     """

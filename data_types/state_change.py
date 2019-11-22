@@ -1,5 +1,23 @@
-from life_logger_utils import user_enter
+from life_logger_utils import user_enter, function_maker
 import data_types.did_do as bool_lib
+
+
+def build_state_change_function(definition):
+    """
+    Builds a function that gets the the data for a state change from the user.
+    Raises an error if the definition is not valid.
+    str -> () -> int or error
+    """
+    return function_maker(user_enter_state_change, 
+                          definition, is_valid_state_change_definition, 
+                          "Not a time state change change definition: " + definition)
+
+def is_valid_state_change_definition(definition):
+    """
+    Returns true if the state change definition in valid.
+    str -> bool
+    """
+    return True
 
 def user_enter_state_change(definition):
     """
