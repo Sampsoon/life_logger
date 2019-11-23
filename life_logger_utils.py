@@ -1,7 +1,5 @@
 import constants
 
-# TODO: CHECK VALIDITY OF DEFINITIONS... probs put in a function call that returns user_enter***
-
 # A definition is the text following space after the type name.
 
 def user_enter(get_label,

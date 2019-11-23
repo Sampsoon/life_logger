@@ -12,7 +12,7 @@ def build_value_function(definition):
 
 def is_valid_value_definition(definition):
     """
-    Returns true if the value definition in valid.
+    Returns true if the value definition is valid.
     str -> bool
     """
     return True

@@ -13,7 +13,7 @@ def build_key_event_function(definition):
 
 def is_valid_key_event_definition(definition):
     """
-    Returns true if the key event definition in valid.
+    Returns true if the key event definition is valid.
     str -> bool
     """
     return True

@@ -12,7 +12,7 @@ def build_time_function(definition):
 
 def is_valid_time_definition(definition):
     """
-    Returns true if the time definition in valid.
+    Returns true if the time definition is valid.
     str -> bool
     """
     return True

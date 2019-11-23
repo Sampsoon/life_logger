@@ -14,7 +14,7 @@ def build_state_change_function(definition):
 
 def is_valid_state_change_definition(definition):
     """
-    Returns true if the state change definition in valid.
+    Returns true if the state change definition is valid.
     str -> bool
     """
     return True

@@ -12,10 +12,10 @@ def build_did_do_function(definition):
 
 def is_valid_did_do_definition(definition):
     """
-    Returns true if the did do definition in valid.
+    Returns true if the did do definition is valid.
     str -> bool
     """
-    return True
+    return True 
 
 def user_enter_did_do(definition):
     """

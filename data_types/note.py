@@ -12,7 +12,7 @@ def build_note_function(definition):
 
 def is_valid_note_definition(definition):
     """
-    Returns true if the note definition in valid.
+    Returns true if the note definition is valid.
     str -> bool
     """
     return True
