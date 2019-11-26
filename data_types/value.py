@@ -1,3 +1,4 @@
+from functools import reduce
 from life_logger_utils import user_enter, function_maker
 
 def build_value_function(definition):
@@ -15,7 +16,94 @@ def is_valid_value_definition(definition):
     Returns true if the value definition is valid.
     str -> bool
     """
-    return True
+    split = definition.split(" ")
+    try:
+        first_value = split[0]
+        
+        return (len(split) == 2 and 
+                string_has_parentheses_around_it(first_value) and 
+                string_has_one_comma_inside_it(first_value) and
+                range_has_only_int_values(first_value))
+    except:
+        return False
+
+def range_has_only_int_values(range_string):
+    """
+    Returns true if a given range only has int in its definition: (int,int)
+    str -> bool
+    """
+    
+    # Removes the items in a range that are not numbers.
+    range_string = remove_first_value(range_string)
+    range_string = remove_last_value(range_string)
+    range_string = remove_element(range_string, ',')
+
+    return all_values_in_string_int(range_string)
+    
+def all_values_in_string_int(string):
+    """
+    Returns true if all the values in a string are integers.
+    str -> bool
+    """
+    is_digit_accumulator = lambda current, char: char.isdigit and current
+    return reduce(is_digit_accumulator, string, True)
+
+def remove_element(some_list, value):
+    """
+    Returns a new list with an element removed from it.
+    list -> list
+    """
+    return [item for item in some_list if item != value]
+
+def string_has_parentheses_around_it(string):
+    """
+    Returns true if a given string has parentheses around it.
+    str -> bool
+    """
+    try:
+        return get_front_value(string) == '(' and get_last_value(string) == ')'
+    except:
+        return False
+
+def string_has_one_comma_inside_it(string):
+    """
+    Returns true if a string has one common side it (not on eather end of it.)
+    str -> bool
+    """
+    try:
+        if get_front_value(string) == ',' or get_last_value(string) == ',':
+            return False
+        return string.count(',') == 1
+    except:
+        return False
+
+def get_front_value(some_list):
+    """
+    Returns the front value of a list.
+    list -> any
+    """
+    return some_list[0]
+
+def get_last_value(some_list):
+    """
+    Returns the last value of a list.
+    list -> any
+    """
+    return some_list[-1]
+
+def remove_first_value(some_list):
+    """
+    Returns a given list with its first value removed.
+    list -> list
+    """
+    return some_list[1:]
+
+def remove_last_value(some_list):
+    """
+    Returns a given list with its last value removed.
+    list -> list
+    """
+    return some_list[:-1]
 
 def user_enter_value(definition):
     """

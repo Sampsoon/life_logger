@@ -54,6 +54,15 @@ class Logger_Tests(unittest.TestCase):
 
     def testis_valid_value_valid_not_a_number(self):
         self.assertTrue(not is_valid_value("8s",5, 10))
+        
+    def testis_valid_value_definition_none_int(self):
+        self.assertTrue(not is_valid_value_definition('value (87w7,10000)'))
+        
+    def testis_valid_value_definition_basic(self):
+        self.assertTrue(is_valid_value_definition('value (87,10000)'))
+        
+    def testis_valid_value_definition_float(self):
+        self.assertTrue(not is_valid_value_definition('value (87.0,10000)'))
 
 if __name__ == '__main__': 
     unittest.main() 
