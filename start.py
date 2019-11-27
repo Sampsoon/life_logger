@@ -14,10 +14,11 @@ def main():
     data = []
     
     new_line = '\n'
+    tab = '\t'
     
     print(new_line)
     print(constants.LINE)
-    print("WELCOME TO LIFE LOGGER")
+    print(tab + tab + 'WELCOME TO LIFE LOGGER')
     print(constants.LINE)
     print()
     

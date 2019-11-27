@@ -7,10 +7,9 @@ from data_types.value import build_value_function
 
 COMMENT_OUT_STRING = "//"
 
-LINE = '----------------------------'
+LINE = '------------------------------------------------------'
 
 CONFIG_PATH = 'config.txt'
-
 """
 a map of type names to input functions.
 none -> map of str to (str -> anything)

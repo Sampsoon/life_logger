@@ -56,9 +56,11 @@ def config_to_functions(config):
     functions = []
 
     for line in config:
+        
+        line = remove_new_lines(line)
 
-        # Skip the lines that are commented out.
-        if is_line_commented(line):
+        # Skip the lines that are commented out or are empty.
+        if is_line_commented(line) or is_empty_line(line):
             continue
 
         check_config_line(line)
@@ -67,12 +69,18 @@ def config_to_functions(config):
         check_type(command_type)
 
         definition = get_command_definition(line)
-        definition = remove_new_lines(definition)
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
         functions.append(type_to_input_functions[command_type](definition))
 
     return functions
+
+def is_empty_line(line):
+    """
+    Returns true if a given line is empty.
+    str -> bool
+    """
+    return len(line) == 0
 
 def get_command_type(line):
     """
