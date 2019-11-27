@@ -6,7 +6,10 @@ from data_types.time import build_time_function
 from data_types.value import build_value_function
 
 COMMENT_OUT_STRING = "//"
+
 LINE = '----------------------------'
+
+CONFIG_PATH = 'config.txt'
 
 """
 a map of type names to input functions.

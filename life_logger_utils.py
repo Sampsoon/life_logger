@@ -67,6 +67,7 @@ def config_to_functions(config):
         check_type(command_type)
 
         definition = get_command_definition(line)
+        definition = remove_new_lines(definition)
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
         functions.append(type_to_input_functions[command_type](definition))
@@ -124,3 +125,21 @@ def check_config_line(line):
     """
     if len(line.split(' ', 1)) == 1:
         raise ValueError('Invalid config line: ' + line)
+
+def open_file(filename):
+    """
+    Take in a file name and returns its contents has a list of file lines.
+    string -> list of strings
+    """
+    file = open(filename)
+    file_data = [line for line in file]
+    file.close()
+
+    return file_data
+
+def remove_new_lines(string):
+    """
+    Returns a given string with its newlines striped from it.
+    str -> str
+    """
+    return string.strip('\n')

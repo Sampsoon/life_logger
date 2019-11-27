@@ -56,13 +56,31 @@ class Logger_Tests(unittest.TestCase):
         self.assertTrue(not is_valid_value("8s",5, 10))
         
     def testis_valid_value_definition_none_int(self):
-        self.assertTrue(not is_valid_value_definition('value (87w7,10000)'))
-        
-    def testis_valid_value_definition_basic(self):
-        self.assertTrue(is_valid_value_definition('value (87,10000)'))
+        self.assertTrue(not is_valid_value_definition('(87w7,10000) hello'))
         
     def testis_valid_value_definition_float(self):
-        self.assertTrue(not is_valid_value_definition('value (87.0,10000)'))
+        self.assertTrue(not is_valid_value_definition('(87.0,10000) hello'))
+        
+    def testis_valid_value_definition_no_left(self):
+        self.assertTrue(not is_valid_value_definition('0,10) hello'))
+        
+    def testis_valid_value_definition_no_right(self):
+        self.assertTrue(not is_valid_value_definition('(0,10 hello'))
+        
+    def testis_valid_value_definition_no_comma(self):
+        self.assertTrue(not is_valid_value_definition('(110) hello'))
+        
+    def testis_valid_value_definition_comma_on_left(self):
+        self.assertTrue(not is_valid_value_definition('(,010) hello'))
+        
+    def testis_valid_value_definition_comma_on_right(self):
+        self.assertTrue(not is_valid_value_definition('(010,) hello'))
+        
+    def testis_valid_value_definition_two_comma(self):
+        self.assertTrue(not is_valid_value_definition('(0,1,0) hello'))
+        
+    def testis_valid_value_definition_basic(self):
+        self.assertTrue(is_valid_value_definition('(0,10) hello'))
 
 if __name__ == '__main__': 
     unittest.main() 

@@ -1,0 +1,7 @@
+value (0,10) stuff
+// hello
+time Some stuff
+did_do otherStuff
+key_event event
+state_change change
+note notworthy thing

@@ -10,6 +10,34 @@ def build_value_function(definition):
     return function_maker(user_enter_value, 
                           definition, is_valid_value_definition, 
                           "Not a valid value definition: " + definition)
+    
+def user_enter_value(definition):
+    """
+    Get a value from the user.
+    Returns it along with label for the value.
+    A value is a int from a to b inclusive.
+    Signature in config: value (a,b) label
+    str -> (label: str, value: int)
+    """
+
+    number_range = get_value_range(definition)
+    a = number_range[0]
+    b = number_range[1]
+
+    inclusive_exclusive = 'From a scale from {} inclusive to {} exclusive, '.format(a,b)
+    question = inclusive_exclusive + 'how would you rate your {}?'
+
+    valid = 'A valid response is a integer ' + inclusive_exclusive.lower()
+    
+    is_valid = lambda response: is_valid_value(response, a, b)
+    
+    return user_enter(get_value_label, 
+                      user_enter_value_response,
+                      get_value_from_response,
+                      is_valid,
+                      question,
+                      valid,
+                      definition)
 
 def is_valid_value_definition(definition):
     """
@@ -18,42 +46,26 @@ def is_valid_value_definition(definition):
     """
     split = definition.split(" ")
     try:
-        first_value = split[0]
+        range_definition = split[0]
         
-        return (len(split) == 2 and 
-                string_has_parentheses_around_it(first_value) and 
-                string_has_one_comma_inside_it(first_value) and
-                range_has_only_int_values(first_value))
+        if not len(split) == 2:
+            return False
+        
+        if not string_has_parentheses_around_it(range_definition):
+            return False
+            
+        range_definition = remove_first_value(range_definition)
+        range_definition = remove_last_value(range_definition)
+       
+        if not string_has_one_comma_inside_it(range_definition):
+            return False
+        
+        range_definition = range_definition.replace(',', '')
+        
+        return range_definition.isdigit()
+    
     except:
         return False
-
-def range_has_only_int_values(range_string):
-    """
-    Returns true if a given range only has int in its definition: (int,int)
-    str -> bool
-    """
-    
-    # Removes the items in a range that are not numbers.
-    range_string = remove_first_value(range_string)
-    range_string = remove_last_value(range_string)
-    range_string = remove_element(range_string, ',')
-
-    return all_values_in_string_int(range_string)
-    
-def all_values_in_string_int(string):
-    """
-    Returns true if all the values in a string are integers.
-    str -> bool
-    """
-    is_digit_accumulator = lambda current, char: char.isdigit and current
-    return reduce(is_digit_accumulator, string, True)
-
-def remove_element(some_list, value):
-    """
-    Returns a new list with an element removed from it.
-    list -> list
-    """
-    return [item for item in some_list if item != value]
 
 def string_has_parentheses_around_it(string):
     """
@@ -104,34 +116,6 @@ def remove_last_value(some_list):
     list -> list
     """
     return some_list[:-1]
-
-def user_enter_value(definition):
-    """
-    Get a value from the user.
-    Returns it along with label for the value.
-    A value is a int from a to b inclusive.
-    Signature in config: value (a,b) label
-    str -> (label: str, value: int)
-    """
-
-    number_range = get_value_range(definition)
-    a = number_range[0]
-    b = number_range[1]
-
-    inclusive_exclusive = 'From a scale from {} inclusive to {} exclusive, '.format(a,b)
-    question = inclusive_exclusive + 'how would you rate your {}?'
-
-    valid = 'A valid response is a integer ' + inclusive_exclusive.lower()
-    
-    is_valid = lambda response: is_valid_value(response, a, b)
-    
-    return user_enter(get_value_label, 
-                      user_enter_value_response,
-                      get_value_from_response,
-                      is_valid,
-                      question,
-                      valid,
-                      definition)
 
 def user_enter_value_response():
     """
