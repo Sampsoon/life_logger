@@ -5,9 +5,13 @@ from data_types.state_change import build_state_change_function
 from data_types.time import build_time_function
 from data_types.value import build_value_function
 
-COMMENT_OUT_STRING = "//"
+COMMENT_OUT_STRING = '//'
 
 LINE = '------------------------------------------------------'
+
+MULTILINE_COMMENT_START = '/*'
+
+MULTILINE_COMMENT_END = '*/'
 
 CONFIG_PATH = 'config.txt'
 """

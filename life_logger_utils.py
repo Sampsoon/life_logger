@@ -54,13 +54,28 @@ def config_to_functions(config):
     type_to_input_functions = constants.TYPE_MAP
 
     functions = []
+    
+    in_multiline_comment = False
 
     for line in config:
-        
         line = remove_new_lines(line)
+        
+        in_multiline_comment = in_multiline_comment or line_starts_multiline_comment_start(line)
+        multiline_comment_end = line_starts_multiline_comment_end(line)
+        
+        if not in_multiline_comment and multiline_comment_end:
+            message = 'Multiline comment end: ' + constants.MULTILINE_COMMENT_END
+            message += ' must inclose a comment.'
+            raise Exception(message)
+        
+        if multiline_comment_end:
+            in_multiline_comment = False
 
-        # Skip the lines that are commented out or are empty.
-        if is_line_commented(line) or is_empty_line(line):
+        # Skip necessary lines.
+        if (is_line_commented(line) or 
+            is_empty_line(line) or 
+            in_multiline_comment or 
+            multiline_comment_end):
             continue
 
         check_config_line(line)
@@ -72,6 +87,11 @@ def config_to_functions(config):
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
         functions.append(type_to_input_functions[command_type](definition))
+        
+    if in_multiline_comment:
+        message = 'Multiline comment start: ' + constants.MULTILINE_COMMENT_START
+        message += ' must be inclosed with: ' + constants.MULTILINE_COMMENT_END
+        raise Exception(message)
 
     return functions
 
@@ -98,12 +118,34 @@ def get_command_definition(line):
     line = line.split(' ', 1)
     return line[1]
 
+def string_starts_with(string, start):
+    """
+    Returns true if a string starts with a value.
+    str -> bool
+    """
+    length = len(start)
+    return len(string) >= length and string[0:length] == start
+
 def is_line_commented(line):
     """
     Returns true if the given line was commented out.
     str -> bool
     """
-    return len(line) >= 2 and line[0:2] == constants.COMMENT_OUT_STRING
+    return string_starts_with(line, constants.COMMENT_OUT_STRING)
+
+def line_starts_multiline_comment_start(line):
+    """
+    Returns true if the given line starts with a multiline comment start.
+    str -> bool
+    """
+    return string_starts_with(line, constants.MULTILINE_COMMENT_START)
+
+def line_starts_multiline_comment_end(line):
+    """
+    Returns true if the given line starts with a multiline commentend .
+    str -> bool
+    """
+    return string_starts_with(line, constants.MULTILINE_COMMENT_END)
 
 def function_maker(input_func, perameter, perameter_verifier, exception_message):
     """
@@ -114,16 +156,16 @@ def function_maker(input_func, perameter, perameter_verifier, exception_message)
     if perameter_verifier(perameter):
         return lambda: input_func(perameter)
     
-    raise ValueError(exception_message)
+    raise Exception(exception_message)
 
-def check_type(type):
+def check_type(config_type):
     """
     Checks that a given type is valid.
     If not, throw an exception.
     str -> none or error
     """
-    if type not in constants.TYPE_MAP:
-        raise ValueError(type + ' is not a valid type')
+    if config_type not in constants.TYPE_MAP:
+        raise Exception(quote_pad(config_type) + ' is not a valid type')
 
 def check_config_line(line):
     """
@@ -132,7 +174,7 @@ def check_config_line(line):
     str -> none or error
     """
     if len(line.split(' ', 1)) == 1:
-        raise ValueError('Invalid config line: ' + line)
+        raise Exception('Invalid config line: ' + quote_pad(line))
 
 def open_file(filename):
     """
@@ -151,3 +193,20 @@ def remove_new_lines(string):
     str -> str
     """
     return string.strip('\n')
+
+
+def new_line_pad(string):
+    """
+    Returns a string padded with newlines.
+    str -> str
+    """
+    new_line = '\n'
+    return new_line + string + new_line
+
+def quote_pad(string):
+    """
+    Returns a string padded with quotes.
+    str -> str
+    """
+    quote = "'"
+    return quote + string + quote

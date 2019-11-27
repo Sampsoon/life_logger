@@ -1,29 +1,38 @@
 import sys
 import constants
-from life_logger_utils import config_to_functions, open_file
+from life_logger_utils import config_to_functions, open_file, new_line_pad
 
 def main():
     """
     Runs the program.
     """
-
-    mock_config = open_file(constants.CONFIG_PATH)
-
-    input_functions = config_to_functions(mock_config)
     
-    data = []
-    
+    input_functions = []
     new_line = '\n'
     tab = '\t'
     
-    print(new_line)
-    print(constants.LINE)
+    try:
+        config = open_file(constants.CONFIG_PATH)
+        input_functions = config_to_functions(config)
+        
+    except Exception as e:
+        print(constants.LINE)
+        message = new_line_pad('An error occurred:' + new_line + str(e))
+        print(message)
+        return
+    
+    data = []
+    
+    print(new_line + new_line + constants.LINE)
     print(tab + tab + 'WELCOME TO LIFE LOGGER')
-    print(constants.LINE)
-    print()
+    print(constants.LINE + new_line)
     
     for func in input_functions:
-        data.append(func())
-        print('\n' + constants.LINE + '\n')
+        try:
+            data.append(func())
+        except:
+            print(new_line_pad('Program Shutdown'))
+            return
+        print(new_line_pad(constants.LINE))
 
 main()
