@@ -1,4 +1,4 @@
-
+import pandas
 
 def open_file(filename):
     """
@@ -14,7 +14,18 @@ def open_file(filename):
 def save_data(data):
     """
     Saves the logged data to a file.
-    list of (str, any) -> none
+    dic str to any -> none
     """
     
+    data_frame = data_to_data_frame(data)
+    
+    data_frame.to_csv('saves\\save.csv')
+    
     print('Data Saved!')
+    
+def data_to_data_frame(data):
+    """
+    Convers some data into a data frame.
+    dic str to any -> data frame
+    """
+    return pandas.DataFrame(data)

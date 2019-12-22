@@ -23,7 +23,7 @@ def main():
         print(message)
         return
     
-    data = []
+    data = {}
     
     print(new_line + new_line + constants.LINE)
     print(tab + tab + 'WELCOME TO LIFE LOGGER')
@@ -31,7 +31,8 @@ def main():
     
     for func in input_functions:
         try:
-            data.append(func())
+            data_to_log = func()
+            data[data_to_log[0]] = data_to_log[1]
         except:
             print(new_line_pad('Program Shutdown'))
             return
