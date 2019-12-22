@@ -1,6 +1,6 @@
 import sys
 import constants
-from life_logger_utils import config_to_functions, open_file, new_line_pad
+from config_utils import config_to_functions, open_file, new_line_pad
 
 def main():
     """

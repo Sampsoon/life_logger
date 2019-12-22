@@ -1,4 +1,4 @@
-from life_logger_utils import user_enter, function_maker
+from config_utils import user_enter, function_maker
 
 def build_did_do_function(definition):
     """

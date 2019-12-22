@@ -1,6 +1,6 @@
 import unittest
 from constants import *
-from life_logger_utils import *
+from config_utils import *
 from data_types.did_do import *
 from data_types.key_event import *
 from data_types.note import *

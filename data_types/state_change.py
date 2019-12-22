@@ -1,4 +1,4 @@
-from life_logger_utils import user_enter, function_maker
+from config_utils import user_enter, function_maker
 import data_types.did_do as bool_lib
 
 
