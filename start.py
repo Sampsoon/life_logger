@@ -1,6 +1,8 @@
 import sys
 import constants
-from config_utils import config_to_functions, open_file, new_line_pad
+from file_utils import save_data, open_file
+from config_utils import config_to_functions
+from formatting_utils import new_line_pad
 
 def main():
     """
@@ -34,5 +36,7 @@ def main():
             print(new_line_pad('Program Shutdown'))
             return
         print(new_line_pad(constants.LINE))
+    
+    save_data(data)
 
 main()

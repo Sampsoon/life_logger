@@ -1,4 +1,5 @@
 import constants
+from formatting_utils import quote_pad
 
 # A definition is the text following space after the type name.
 
@@ -176,37 +177,9 @@ def check_config_line(line):
     if len(line.split(' ', 1)) == 1:
         raise Exception('Invalid config line: ' + quote_pad(line))
 
-def open_file(filename):
-    """
-    Take in a file name and returns its contents has a list of file lines.
-    string -> list of strings
-    """
-    file = open(filename)
-    file_data = [line for line in file]
-    file.close()
-
-    return file_data
-
 def remove_new_lines(string):
     """
     Returns a given string with its newlines striped from it.
     str -> str
     """
     return string.strip('\n')
-
-
-def new_line_pad(string):
-    """
-    Returns a string padded with newlines.
-    str -> str
-    """
-    new_line = '\n'
-    return new_line + string + new_line
-
-def quote_pad(string):
-    """
-    Returns a string padded with quotes.
-    str -> str
-    """
-    quote = "'"
-    return quote + string + quote
