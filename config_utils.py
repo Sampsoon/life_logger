@@ -29,7 +29,7 @@ def user_enter(get_label,
     definition : str
         The definition for the data.
     ----------
-    str -> (label: str, value: int)
+    str -> (label: str, data: any)
     """
 
     label = get_label(definition)
@@ -50,7 +50,7 @@ def user_enter(get_label,
 def config_to_functions(config):
     """
     Takes in the data for a config and returns a list of functions to call the meet it's criteria.
-    list of str -> list of (none -> str)
+    list of str -> list of (none -> (str, any))
     """
     type_to_input_functions = constants.TYPE_MAP
 
