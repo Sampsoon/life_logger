@@ -18,7 +18,7 @@ CONFIG_PATH = 'config.txt'
 SAVE_DATA_PATH = 'saves\\save.csv'
 
 """
-a map of type names to input functions.
+A map of type names to input functions.
 none -> map of str to (str -> anything)
 """
 TYPE_MAP = {
