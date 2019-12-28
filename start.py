@@ -1,6 +1,6 @@
 import sys
 import constants
-from file_utils import save_data, open_file
+from file_utils import save_data, open_file, get_file_name_from_path
 from config_utils import config_to_functions
 from formatting_utils import new_line_pad, NEW_LINE, TAB
 
@@ -22,13 +22,6 @@ def main():
         try_save_data(data, name)
     except Exception as e:
         print(e)
-
-def get_file_name_from_path(path):
-    """
-    Given a file path, returns the file's name.
-    str -> str
-    """
-    return path.split('\\')[-1].split('.')[0]
 
 def try_config_to_input_functions(config_path):
     """
