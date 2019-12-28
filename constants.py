@@ -14,6 +14,9 @@ MULTILINE_COMMENT_START = '/*'
 MULTILINE_COMMENT_END = '*/'
 
 CONFIG_PATH = 'config.txt'
+
+SAVE_DATA_PATH = 'saves\\save.csv'
+
 """
 a map of type names to input functions.
 none -> map of str to (str -> anything)
