@@ -8,8 +8,6 @@ from data_types.state_change import *
 from data_types.time import *
 from data_types.value import *
 
-# TODO: breaks up tests and write more
-
 class Logger_Tests(unittest.TestCase): 
   
     def test_comments_simple(self):

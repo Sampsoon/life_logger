@@ -38,6 +38,10 @@ def main():
             return
         print(new_line_pad(constants.LINE))
     
-    save_data(data)
+    try:
+        save_data(data)
+    except Exception as e:
+        print('There was a error saving the logged data:')
+        print(e)
 
 main()
