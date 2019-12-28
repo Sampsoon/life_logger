@@ -2,16 +2,27 @@ import sys
 import constants
 from file_utils import save_data, open_file
 from config_utils import config_to_functions
-from formatting_utils import new_line_pad
+from formatting_utils import new_line_pad, NEW_LINE, TAB
 
 def main():
     """
     Runs the program.
+    void -> void
     """
+    print(NEW_LINE + NEW_LINE + constants.LINE)
+    print(TAB + TAB + 'WELCOME TO LIFE LOGGER')
+    print(constants.LINE + NEW_LINE)
     
+    input_functions = try_config_to_input_functions()
+    data = try_get_data_from_function(input_functions)
+    try_save_data(data)
+
+def try_config_to_input_functions():
+    """
+    Tries to create a list of input functions based off a read in config.
+    void -> list of (void -> (str, any))
+    """
     input_functions = []
-    new_line = '\n'
-    tab = '\t'
     
     try:
         config = open_file(constants.CONFIG_PATH)
@@ -19,15 +30,17 @@ def main():
         
     except Exception as e:
         print(constants.LINE)
-        message = new_line_pad('An error occurred:' + new_line + str(e))
+        message = new_line_pad('An error occurred:' + NEW_LINE + str(e))
         print(message)
         return
-    
+    return input_functions
+
+def try_get_data_from_function(input_functions):
+    """
+    Tries to get the data from the user input functions.
+    list of (void -> (str, any)) -> dic str to any 
+    """
     data = {}
-    
-    print(new_line + new_line + constants.LINE)
-    print(tab + tab + 'WELCOME TO LIFE LOGGER')
-    print(constants.LINE + new_line)
     
     for func in input_functions:
         try:
@@ -37,11 +50,18 @@ def main():
             print(new_line_pad('Program Shutdown'))
             return
         print(new_line_pad(constants.LINE))
+        
+    return data
     
+def try_save_data(data):
+    """
+    Tries to saves some data.
+    dic str to any -> none
+    """
     try:
         save_data(data)
     except Exception as e:
         print('There was a error saving the logged data:')
         print(e)
-
+    
 main()

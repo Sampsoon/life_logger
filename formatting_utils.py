@@ -1,3 +1,6 @@
+NEW_LINE = '\n'
+TAB = '\t'
+
 def new_line_pad(string):
     """
     Returns a string padded with newlines.
