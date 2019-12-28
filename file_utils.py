@@ -13,42 +13,51 @@ def open_file(filename):
 
     return file_data
 
-def save_data(data):
+def save_data(data, name):
     """
     Saves the logged data to a file.
-    dic str to any -> none
+    dic str to any, str -> none
     """
     data_frame = data_to_data_frame(data)
     
-    if file_in_folder(constants.SAVE_DATA_PATH):
-        add_data_to_file(data_frame)
+    file_path = get_save_file_path(name)
+    
+    if file_in_folder(file_path):
+        add_data_to_file(data_frame, file_path)
     else:
-        save_to_new_file(data_frame)
+        save_to_new_file(data_frame, file_path)
     
     print('Data Saved!')
 
-def add_data_to_file(data):
+def get_save_file_path(name):
+    """
+    Returns the save file path of a file given its name.
+    str -> str
+    """
+    return constants.SAVE_DATA_PATH + constants.SAVED_DATA_NAME_TAG + '_' + name + '.csv'
+
+def add_data_to_file(data, file_path):
     """
     Adds data a scv file.
-    data frame -> void
+    data frame, str -> void
     """
-    file_data = pandas.read_csv(constants.SAVE_DATA_PATH)
+    file_data = pandas.read_csv(file_path)
     new_data = file_data.append(data, ignore_index=True, sort=True)
-    save_to_new_file(new_data)
+    save_to_new_file(new_data, file_path)
 
-def save_to_new_file(data):
+def save_to_new_file(data, file_path):
     """
     Saves the data to a new file.
-    data frame -> void
+    data frame, str -> void
     """
-    data.to_csv(constants.SAVE_DATA_PATH)
+    data.to_csv(file_path)
 
 def file_in_folder(file_path):
     """
     Returns true if a file is in a folder.
     str -> bool
     """
-    return path.exists(constants.SAVE_DATA_PATH)
+    return path.exists(file_path)
     
 def data_to_data_frame(data):
     """

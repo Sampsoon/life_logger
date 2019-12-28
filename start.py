@@ -10,6 +10,7 @@ def main():
     void -> void
     """
     config_path = sys.argv[1] if len(sys.argv) > 1 else constants.DEFAULT_CONFIG_PATH
+    name = get_file_name_from_path(config_path)
     
     print(NEW_LINE + NEW_LINE + constants.LINE)
     print(TAB + TAB + 'WELCOME TO LIFE LOGGER')
@@ -18,9 +19,16 @@ def main():
     try:
         input_functions = try_config_to_input_functions(config_path)
         data = try_get_data_from_function(input_functions)
-        try_save_data(data)
+        try_save_data(data, name)
     except Exception as e:
         print(e)
+
+def get_file_name_from_path(path):
+    """
+    Given a file path, returns the file's name.
+    str -> str
+    """
+    return path.split('\\')[-1].split('.')[0]
 
 def try_config_to_input_functions(config_path):
     """
@@ -56,15 +64,15 @@ def try_get_data_from_function(input_functions):
         
     return data
     
-def try_save_data(data):
+def try_save_data(data, name):
     """
     Tries to saves some data.
-    dic str to any -> none
+    dic str to any, str -> none
     """
     try:
-        save_data(data)
+        save_data(data, name)
     except Exception as e:
-        message = 'There was a error saving the logged data:' + NEW_LINE + str(e)
+        message = 'There was an error saving the logged data:' + NEW_LINE + str(e)
         raise Exception(message)
     
 main()

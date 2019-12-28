@@ -15,7 +15,9 @@ MULTILINE_COMMENT_END = '*/'
 
 DEFAULT_CONFIG_PATH = 'config.txt'
 
-SAVE_DATA_PATH = 'saves\\save.csv'
+SAVE_DATA_PATH = 'saves\\'
+
+SAVED_DATA_NAME_TAG = 'save';
 
 """
 A map of type names to input functions.
