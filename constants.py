@@ -13,7 +13,7 @@ MULTILINE_COMMENT_START = '/*'
 
 MULTILINE_COMMENT_END = '*/'
 
-CONFIG_PATH = 'config.txt'
+DEFAULT_CONFIG_PATH = 'config.txt'
 
 SAVE_DATA_PATH = 'saves\\save.csv'
 

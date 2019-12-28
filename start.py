@@ -9,30 +9,32 @@ def main():
     Runs the program.
     void -> void
     """
+    config_path = sys.argv[1] if len(sys.argv) > 1 else constants.DEFAULT_CONFIG_PATH
+    
     print(NEW_LINE + NEW_LINE + constants.LINE)
     print(TAB + TAB + 'WELCOME TO LIFE LOGGER')
     print(constants.LINE + NEW_LINE)
     
     try:
-        input_functions = try_config_to_input_functions()
+        input_functions = try_config_to_input_functions(config_path)
         data = try_get_data_from_function(input_functions)
         try_save_data(data)
     except Exception as e:
         print(e)
 
-def try_config_to_input_functions():
+def try_config_to_input_functions(config_path):
     """
     Tries to create a list of input functions based off a read in config.
-    void -> list of (void -> (str, any))
+    str -> list of (void -> (str, any))
     """
     input_functions = []
     
     try:
-        config = open_file(constants.CONFIG_PATH)
+        config = open_file(config_path)
         input_functions = config_to_functions(config)
         
     except Exception as e:
-        message = constants.LINE + NEW_LINE +  new_line_pad('An error occurred:' + NEW_LINE + str(e))
+        message = constants.LINE + NEW_LINE + new_line_pad('An error occurred:' + NEW_LINE + str(e))
         raise Exception(message)
             
     return input_functions
