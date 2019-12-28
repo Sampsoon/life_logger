@@ -13,9 +13,12 @@ def main():
     print(TAB + TAB + 'WELCOME TO LIFE LOGGER')
     print(constants.LINE + NEW_LINE)
     
-    input_functions = try_config_to_input_functions()
-    data = try_get_data_from_function(input_functions)
-    try_save_data(data)
+    try:
+        input_functions = try_config_to_input_functions()
+        data = try_get_data_from_function(input_functions)
+        try_save_data(data)
+    except Exception as e:
+        print(e)
 
 def try_config_to_input_functions():
     """
@@ -29,10 +32,9 @@ def try_config_to_input_functions():
         input_functions = config_to_functions(config)
         
     except Exception as e:
-        print(constants.LINE)
-        message = new_line_pad('An error occurred:' + NEW_LINE + str(e))
-        print(message)
-        return
+        message = constants.LINE + NEW_LINE +  new_line_pad('An error occurred:' + NEW_LINE + str(e))
+        raise Exception(message)
+            
     return input_functions
 
 def try_get_data_from_function(input_functions):
@@ -47,8 +49,7 @@ def try_get_data_from_function(input_functions):
             data_to_log = func()
             data[data_to_log[0]] = data_to_log[1]
         except:
-            print(new_line_pad('Program Shutdown'))
-            return
+            raise Exception(new_line_pad('Program Shutdown'))
         print(new_line_pad(constants.LINE))
         
     return data
@@ -61,7 +62,7 @@ def try_save_data(data):
     try:
         save_data(data)
     except Exception as e:
-        print('There was a error saving the logged data:')
-        print(e)
+        message = 'There was a error saving the logged data:' + NEW_LINE + str(e)
+        raise Exception(message)
     
 main()
