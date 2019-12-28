@@ -32,7 +32,9 @@ def add_data_to_file(data):
     Adds data a scv file.
     data frame -> void
     """
-    print('was here!')
+    file_data = pandas.read_csv(constants.SAVE_DATA_PATH)
+    new_data = file_data.append(data, ignore_index=True, sort=True)
+    save_to_new_file(new_data)
 
 def save_to_new_file(data):
     """
