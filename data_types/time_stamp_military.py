@@ -1,5 +1,7 @@
 import datetime
 from config_utils import user_enter, function_maker
+from data_types.time_utils import respones_to_datetime, datatime_to_string
+import constants
 
 def build_time_stamp_military_function(definition):
     """
@@ -44,8 +46,8 @@ def get_time_stamp_military_from_response(response):
     Gets the value from a valid time_stamp_military response.
     str -> str
     """
-    time = respones_to_datetime(response)
-    return datatime_to_string(time)
+    time = respones_to_datetime(response, constants.DATETIME_FORMATE_MILITARY)
+    return datatime_to_string(time, constants.DATETIME_FORMATE_MILITARY)
     
 def is_valid_time_stamp_military_response(response):
     """
@@ -53,24 +55,10 @@ def is_valid_time_stamp_military_response(response):
     str -> bool
     """
     try:
-        respones_to_datetime(response)
+        respones_to_datetime(response, constants.DATETIME_FORMATE_MILITARY)
         return True
     except ValueError:
         return False
-
-def respones_to_datetime(response):
-    """
-    Parses a user string respones into a datetime object.
-    str -> datetime
-    """
-    return datetime.datetime.strptime(response, '%H:%M')
-
-def datatime_to_string(datetime):
-    """
-    Converts a datetime object to a string.
-    datetime -> str
-    """
-    return datetime.strftime('%H:%M')
 
 def user_enter_time_stamp_military_response():
     """

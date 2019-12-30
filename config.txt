@@ -26,7 +26,10 @@ note noteworthy thing
 floating_point fValue
 
 // some int
-integer iValue
+integer 
 
 // Some time stamp in military form
 time_stamp_military mt
+
+// Some time stamp in am/pm form
+time_stamp_normal nt

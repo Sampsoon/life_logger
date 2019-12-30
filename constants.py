@@ -7,6 +7,7 @@ from data_types.range import build_range_function
 from data_types.floating_point import build_floating_point_function
 from data_types.integer import build_integer_function
 from data_types.time_stamp_military import build_time_stamp_military_function
+from data_types.time_stamp_normal import build_time_stamp_normal_function
 
 COMMENT_OUT_STRING = '//'
 
@@ -22,6 +23,10 @@ SAVE_DATA_PATH = 'saves\\'
 
 SAVED_DATA_NAME_TAG = 'save';
 
+DATETIME_FORMATE_NORMAL = '%I:%M %p'
+
+DATETIME_FORMATE_MILITARY = '%H:%M'
+
 """
 A map of type names to input functions.
 none -> map of str to (str -> anything)
@@ -35,5 +40,6 @@ TYPE_MAP = {
         'state_change' : build_state_change_function,
         'floating_point' : build_floating_point_function,
         'integer' : build_integer_function,
-        'time_stamp_military' : build_time_stamp_military_function
+        'time_stamp_military' : build_time_stamp_military_function,
+        'time_stamp_normal' : build_time_stamp_normal_function
         }
