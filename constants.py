@@ -3,7 +3,7 @@ from data_types.key_event import build_key_event_function
 from data_types.note import build_note_function
 from data_types.state_change import build_state_change_function
 from data_types.time import build_time_function
-from data_types.value import build_value_function
+from data_types.range import build_range_function
 
 COMMENT_OUT_STRING = '//'
 
@@ -24,7 +24,7 @@ A map of type names to input functions.
 none -> map of str to (str -> anything)
 """
 TYPE_MAP = {
-        'value' : build_value_function,
+        'range' : build_range_function,
         'time' : build_time_function,
         'did_do' : build_did_do_function,
         'note' : build_note_function,

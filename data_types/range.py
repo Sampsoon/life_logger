@@ -1,26 +1,26 @@
 from functools import reduce
 from config_utils import user_enter, function_maker
 
-def build_value_function(definition):
+def build_range_function(definition):
     """
-    Builds a function that gets the the data for a value from the user.
+    Builds a function that gets the the data for a range from the user.
     Raises an error if the definition is not valid.
     str -> () -> int or error
     """
-    return function_maker(user_enter_value, 
-                          definition, is_valid_value_definition, 
-                          "Not a valid value definition: " + definition)
+    return function_maker(user_enter_range, 
+                          definition, is_valid_range_definition, 
+                          "Not a valid range definition: " + definition)
     
-def user_enter_value(definition):
+def user_enter_range(definition):
     """
-    Get a value from the user.
-    Returns it along with label for the value.
-    A value is a int from a to b inclusive.
-    Signature in config: value (a,b) label
-    str -> (label: str, value: int)
+    Get a range from the user.
+    Returns it along with label for the range.
+    A range is a int from a to b inclusive.
+    Signature in config: range (a,b) label
+    str -> (label: str, range: int)
     """
 
-    number_range = get_value_range(definition)
+    number_range = get_bounds(definition)
     a = number_range[0]
     b = number_range[1]
 
@@ -29,19 +29,19 @@ def user_enter_value(definition):
 
     valid = 'A valid response is a integer ' + inclusive_exclusive.lower()
     
-    is_valid = lambda response: is_valid_value(response, a, b)
+    is_valid = lambda response: is_valid_range(response, a, b)
     
-    return user_enter(get_value_label, 
-                      user_enter_value_response,
-                      get_value_from_response,
+    return user_enter(get_range_label, 
+                      user_enter_range_response,
+                      get_range_from_response,
                       is_valid,
                       question,
                       valid,
                       definition)
 
-def is_valid_value_definition(definition):
+def is_valid_range_definition(definition):
     """
-    Returns true if the value definition is valid.
+    Returns true if the range definition is valid.
     str -> bool
     """
     split = definition.split(" ")
@@ -54,8 +54,8 @@ def is_valid_value_definition(definition):
         if not string_has_parentheses_around_it(range_definition):
             return False
             
-        range_definition = remove_first_value(range_definition)
-        range_definition = remove_last_value(range_definition)
+        range_definition = remove_first_range(range_definition)
+        range_definition = remove_last_range(range_definition)
        
         if not string_has_one_comma_inside_it(range_definition):
             return False
@@ -73,7 +73,7 @@ def string_has_parentheses_around_it(string):
     str -> bool
     """
     try:
-        return get_front_value(string) == '(' and get_last_value(string) == ')'
+        return get_front_range(string) == '(' and get_last_range(string) == ')'
     except:
         return False
 
@@ -83,77 +83,77 @@ def string_has_one_comma_inside_it(string):
     str -> bool
     """
     try:
-        if get_front_value(string) == ',' or get_last_value(string) == ',':
+        if get_front_range(string) == ',' or get_last_range(string) == ',':
             return False
         return string.count(',') == 1
     except:
         return False
 
-def get_front_value(some_list):
+def get_front_range(some_list):
     """
-    Returns the front value of a list.
+    Returns the front range of a list.
     list -> any
     """
     return some_list[0]
 
-def get_last_value(some_list):
+def get_last_range(some_list):
     """
-    Returns the last value of a list.
+    Returns the last range of a list.
     list -> any
     """
     return some_list[-1]
 
-def remove_first_value(some_list):
+def remove_first_range(some_list):
     """
-    Returns a given list with its first value removed.
+    Returns a given list with its first range removed.
     list -> list
     """
     return some_list[1:]
 
-def remove_last_value(some_list):
+def remove_last_range(some_list):
     """
-    Returns a given list with its last value removed.
+    Returns a given list with its last range removed.
     list -> list
     """
     return some_list[:-1]
 
-def user_enter_value_response():
+def user_enter_range_response():
     """
-    Prompts the user to enter a value response.
+    Prompts the user to enter a range response.
     nothing -> str
     """
-    return input('Value: ')
+    return input('range: ')
 
-def get_value_label(definition):
+def get_range_label(definition):
     """
-    Given a value definition, returns its label.
+    Given a range definition, returns its label.
     str -> str
     """
     return definition.split(' ')[1]
 
-def get_value_range(definition):
+def get_bounds(definition):
     """
-    Given a value definition, returns its range.
+    Given a range definition, returns its bounds.
     str -> (int, int)
     """
-    range = definition.split(' ')[0]
-    values = range.split(',')
+    bounds = definition.split(' ')[0]
+    values = bounds.split(',')
     a = values[0][1:]
     b = values[1][:-1]
     return (int(a), int(b))
 
-def is_valid_value(response, a, b):
+def is_valid_range(response, a, b):
     """
     Given a user response and a range of numbers,
     Returns if the response in a int and that in falls in range of [a, b).
     str, number, number -> bool
     """
     if response.isdigit():
-        value = get_value_from_response(response)
-        return value >= a and value < b
+        range = get_range_from_response(response)
+        return range >= a and range < b
     return False
 
-def get_value_from_response(response):
+def get_range_from_response(response):
     """
     Returns true if a boolean response is valid.
     str -> int

@@ -4,8 +4,8 @@ This is a multiline comment
 
 */
 
-// Some value
-value (0,10) stuff
+// Some range
+range (0,10) stuff
 
 // Some time
 time Some stuff
