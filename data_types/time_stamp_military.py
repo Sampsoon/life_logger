@@ -24,7 +24,7 @@ def user_enter_time_stamp_military(definition):
     Returns it along with label for the time_stamp_military.
     A time_stamp_military is a string representation of a time.
     Signature in config: time_stamp_military label
-    str -> (label: str, time_stamp_military: int)
+    str -> (label: str, time_stamp_military: str)
     """
     
     question = 'When did you {}?'
