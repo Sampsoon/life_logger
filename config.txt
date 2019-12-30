@@ -26,7 +26,7 @@ note noteworthy thing
 floating_point fValue
 
 // some int
-integer 
+integer int
 
 // Some time stamp in military form
 time_stamp_military mt
