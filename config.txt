@@ -20,10 +20,13 @@ key_event event
 state_change change
 
 // Some note from the day
-note notworthy thing
+note noteworthy thing
 
 // some floating point 
 floating_point fValue
 
 // some int
 integer iValue
+
+// Some time stamp in military form
+time_stamp_military mt

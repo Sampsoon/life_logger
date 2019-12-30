@@ -6,6 +6,7 @@ from data_types.time import build_time_function
 from data_types.range import build_range_function
 from data_types.floating_point import build_floating_point_function
 from data_types.integer import build_integer_function
+from data_types.time_stamp_military import build_time_stamp_military_function
 
 COMMENT_OUT_STRING = '//'
 
@@ -33,5 +34,6 @@ TYPE_MAP = {
         'key_event' : build_key_event_function,
         'state_change' : build_state_change_function,
         'floating_point' : build_floating_point_function,
-        'integer' : build_integer_function
+        'integer' : build_integer_function,
+        'time_stamp_military' : build_time_stamp_military_function
         }
