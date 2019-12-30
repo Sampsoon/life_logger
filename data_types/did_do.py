@@ -4,7 +4,7 @@ def build_did_do_function(definition):
     """
     Builds a function that gets the the data for a did do from the user.
     Raises an error if the definition is not valid.
-    str -> () -> int or error
+    str -> () -> bool or error
     """
     return function_maker(user_enter_did_do, 
                           definition, is_valid_did_do_definition, 

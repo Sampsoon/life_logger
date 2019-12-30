@@ -4,9 +4,6 @@ This is a multiline comment
 
 */
 
-// some floating point 
-floating_point fValue
-
 // Some range
 range (0,10) stuff
 
@@ -24,3 +21,9 @@ state_change change
 
 // Some note from the day
 note notworthy thing
+
+// some floating point 
+floating_point fValue
+
+// some int
+integer iValue

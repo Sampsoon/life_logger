@@ -4,7 +4,7 @@ def build_floating_point_function(definition):
     """
     Builds a function that gets the the data for a floating_point from the user.
     Raises an error if the definition is not valid.
-    str -> () -> int or error
+    str -> () -> float or error
     """
     return function_maker(user_enter_floating_point, 
                           definition, is_valid_floating_point_definition, 
@@ -40,7 +40,7 @@ def user_enter_floating_point(definition):
 
 def get_floating_point_from_response(response):
     """
-    Gets the floating_point from a valid floating_point response.
+    Gets the value from a valid floating_point response.
     str -> float
     """
     return float(response)

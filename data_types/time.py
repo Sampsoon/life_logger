@@ -4,7 +4,7 @@ def build_time_function(definition):
     """
     Builds a function that gets the the data for a time from the user.
     Raises an error if the definition is not valid.
-    str -> () -> int or error
+    str -> () -> float or error
     """
     return function_maker(user_enter_time, 
                           definition, is_valid_time_definition, 

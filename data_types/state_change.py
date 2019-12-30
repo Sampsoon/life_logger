@@ -6,7 +6,7 @@ def build_state_change_function(definition):
     """
     Builds a function that gets the the data for a state change from the user.
     Raises an error if the definition is not valid.
-    str -> () -> int or error
+    str -> () -> str or error
     """
     return function_maker(user_enter_state_change, 
                           definition, is_valid_state_change_definition, 
