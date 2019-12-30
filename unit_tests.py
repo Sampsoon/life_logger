@@ -38,46 +38,49 @@ class Logger_Tests(unittest.TestCase):
         definition = "(3,20) name_here"
         self.assertEqual((3,20), get_bounds(definition))
 
-    def testis_valid_range_valid_low(self):
+    def test_is_valid_range_valid_low(self):
         self.assertTrue(is_valid_range("5",5, 10))
 
-    def testis_valid_range_valid_high(self):
+    def test_is_valid_range_valid_high(self):
         self.assertTrue(is_valid_range("9",5, 10))
 
-    def testis_valid_range_invalid_low(self):
+    def test_is_valid_range_invalid_low(self):
         self.assertTrue(not is_valid_range("4",5, 10))
 
-    def testis_valid_range_invalid_high(self):
+    def test_is_valid_range_invalid_high(self):
         self.assertTrue(not is_valid_range("10",5, 10))
 
-    def testis_valid_range_valid_not_a_number(self):
+    def test_is_valid_range_valid_not_a_number(self):
         self.assertTrue(not is_valid_range("8s",5, 10))
         
-    def testis_valid_range_definition_none_int(self):
+    def test_is_valid_range_definition_none_int(self):
         self.assertTrue(not is_valid_range_definition('(87w7,10000) hello'))
         
-    def testis_valid_range_definition_float(self):
+    def test_is_valid_range_definition_float(self):
         self.assertTrue(not is_valid_range_definition('(87.0,10000) hello'))
         
-    def testis_valid_range_definition_no_left(self):
+    def test_is_valid_range_definition_no_left(self):
         self.assertTrue(not is_valid_range_definition('0,10) hello'))
         
-    def testis_valid_range_definition_no_right(self):
+    def test_is_valid_range_definition_no_right(self):
         self.assertTrue(not is_valid_range_definition('(0,10 hello'))
         
-    def testis_valid_range_definition_no_comma(self):
+    def test_is_valid_range_definition_no_comma(self):
         self.assertTrue(not is_valid_range_definition('(110) hello'))
         
-    def testis_valid_range_definition_comma_on_left(self):
+    def test_is_valid_range_definition_comma_on_left(self):
         self.assertTrue(not is_valid_range_definition('(,010) hello'))
         
-    def testis_valid_range_definition_comma_on_right(self):
+    def testis__valid_range_definition_comma_on_right(self):
         self.assertTrue(not is_valid_range_definition('(010,) hello'))
         
-    def testis_valid_range_definition_two_comma(self):
+    def test_is_valid_range_definition_two_comma(self):
         self.assertTrue(not is_valid_range_definition('(0,1,0) hello'))
         
-    def testis_valid_range_definition_basic(self):
+    def test_is_valid_range_definition_lowerbound_is_largest(self):
+        self.assertTrue(not is_valid_range_definition('(11,10) hello'))
+        
+    def test_is_valid_range_definition_basic(self):
         self.assertTrue(is_valid_range_definition('(0,10) hello'))
 
 if __name__ == '__main__': 

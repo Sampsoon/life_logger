@@ -62,7 +62,12 @@ def is_valid_range_definition(definition):
         
         range_definition = range_definition.replace(',', '')
         
-        return range_definition.isdigit()
+        if not range_definition.isdigit():
+            return False
+        
+        bounds = get_bounds(definition)
+        
+        return bounds[0] < bounds[1]
     
     except:
         return False
