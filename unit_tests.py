@@ -79,7 +79,10 @@ class Logger_Tests(unittest.TestCase):
         
     def test_is_valid_range_definition_lowerbound_is_largest(self):
         self.assertTrue(not is_valid_range_definition('(11,10) hello'))
-        
+
+    def test_is_valid_range_definition_bounds_are_equal(self):
+        self.assertTrue(not is_valid_range_definition('(10,10) hello'))
+    
     def test_is_valid_range_definition_basic(self):
         self.assertTrue(is_valid_range_definition('(0,10) hello'))
 
