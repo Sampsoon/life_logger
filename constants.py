@@ -5,6 +5,7 @@ from data_types.state_change import build_state_change_function
 from data_types.time import build_time_function
 from data_types.range import build_range_function
 from data_types.floating_point import build_floating_point_function
+from data_types.integer import build_integer_function
 
 COMMENT_OUT_STRING = '//'
 
@@ -31,5 +32,6 @@ TYPE_MAP = {
         'note' : build_note_function,
         'key_event' : build_key_event_function,
         'state_change' : build_state_change_function,
-        'floating_point' : build_floating_point_function
+        'floating_point' : build_floating_point_function,
+        'integer' : build_integer_function
         }
