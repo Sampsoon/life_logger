@@ -21,7 +21,7 @@ def user_enter_integer(definition):
     """
     Get a integer from the user.
     Returns it along with label for the integer.
-    A integer is a float.
+    A integer is a int.
     Signature in config: integer label
     str -> (label: str, integer: int)
     """
