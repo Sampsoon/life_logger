@@ -4,6 +4,9 @@ This is a multiline comment
 
 */
 
+// some floating point 
+floating_point fValue
+
 // Some range
 range (0,10) stuff
 
