@@ -2,17 +2,17 @@ from config_utils import user_enter, function_maker
 
 def build_did_do_function(definition):
     """
-    Builds a function that gets the the data for a did do from the user.
+    Builds a function that gets the the data for a did_do from the user.
     Raises an error if the definition is not valid.
     str -> () -> bool or error
     """
     return function_maker(user_enter_did_do, 
                           definition, is_valid_did_do_definition, 
-                          "Not a valid did do definition: " + definition)
+                          "Not a valid did_do definition: " + definition)
 
 def is_valid_did_do_definition(definition):
     """
-    Returns true if the did do definition is valid.
+    Returns true if the did_do definition is valid.
     str -> bool
     """
     return True 
@@ -47,7 +47,7 @@ def user_enter_boolean_response():
 
 def get_did_do_label(definition):
     """
-    Given a valid did do definition, returns its label.
+    Given a valid did_do definition, returns its label.
     str -> str
     """
     return definition
