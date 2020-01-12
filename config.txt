@@ -10,12 +10,12 @@ range (0,5) your clearheadedness
 range (0,5) your positivity
 
 // Sleep:
-time sleep on sleep tracker
+time sleep on sleep the tracker
 
 time_stamp_military wake up
 
 // other
-time productivity outside of work
+time be productive outside of work
 
 // Taken from reminders app:
 did_do cold shower
@@ -38,6 +38,6 @@ key_event any events
 
 state_change living location
 
-state_change general status
+state_change general
 
 note the day
