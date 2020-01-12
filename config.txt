@@ -34,6 +34,8 @@ did_do no fap
 
 did_do get exercise
 
+integer calories consumed
+
 key_event any events
 
 state_change living location
