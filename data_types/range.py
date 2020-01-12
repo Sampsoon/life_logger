@@ -48,7 +48,7 @@ def is_valid_range_definition(definition):
     try:
         range_definition = split[0]
         
-        if not len(split) == 2:
+        if not len(split) >= 2:
             return False
         
         if not string_has_parentheses_around_it(range_definition):
