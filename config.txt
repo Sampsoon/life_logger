@@ -1,35 +1,43 @@
-/*
+// Emotional state being tracked:
+range (0,5) your energy level
 
-This is a multiline comment
+range (0,5) your confidence
 
-*/
+range (0,5) your focus
 
-// Some range
-range (0,10) stuff
+range (0,5) your clearheadedness
 
-// Some time
-time Some stuff
+range (0,5) your positivity
 
-// Some to do
-did_do otherStuff
+// Sleep:
+time sleep on sleep tracker
 
-// Some event
-key_event event
+time_stamp_military wake up
 
-// Some change in life state
-state_change change
+// other
+time productivity outside of work
 
-// Some note from the day
-note noteworthy thing
+// Taken from reminders app:
+did_do cold shower
 
-// some floating point 
-floating_point fValue
+did_do take supplements
 
-// some int
-integer int
+did_do meditate
 
-// Some time stamp in military form
-time_stamp_military mt
+did_do not listen to draining music
 
-// Some time stamp in am/pm form
-time_stamp_normal nt
+did_do not eat sugar
+
+// other
+
+did_do no fap
+
+did_do get exercise
+
+key_event any events
+
+state_change living location
+
+state_change general status
+
+note the day

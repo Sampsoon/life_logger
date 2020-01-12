@@ -134,7 +134,7 @@ def get_range_label(definition):
     Given a range definition, returns its label.
     str -> str
     """
-    return definition.split(' ')[1]
+    return definition.split(' ', 1)[1]
 
 def get_bounds(definition):
     """
