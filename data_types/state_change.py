@@ -27,7 +27,7 @@ def user_enter_state_change(definition):
     Signature in config: state_change label
     str -> (label: str, value: str)
     """
-    update_question = 'Have any important events occurred consurning {}?'
+    update_question = 'Has your {} status changed?'
     valid_update_respones = 'A valid response is eather "y" for True or "n" for False.'
     
     update = user_enter(get_state_change_label, 

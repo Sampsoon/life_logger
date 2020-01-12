@@ -26,7 +26,7 @@ def user_enter_time(definition):
     str -> (label: str, value: float)
     """
     
-    question = 'How long did you {}?'
+    question = 'How much time did you {}?'
     valid = 'A valid response is a number >= 0'
 
     return user_enter(get_time_label, 

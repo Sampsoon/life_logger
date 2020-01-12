@@ -65,7 +65,7 @@ def user_enter_time_stamp_military_response():
     Prompts the user to enter a time_stamp_military response.
     nothing -> str
     """
-    return input('Military Time:')
+    return input('Military Time: ')
     
 def get_time_stamp_military_label(definition):
     """
