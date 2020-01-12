@@ -42,7 +42,7 @@ def user_enter_key_event(definition):
     if not update[1]:
         return (update[0], '')
     
-    question = 'Enter your event(s)?'
+    question = 'What were your event(s)?'
     valid = 'A valid response is a any text.'
 
     return user_enter(get_key_event_label, 

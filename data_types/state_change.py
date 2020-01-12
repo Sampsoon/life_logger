@@ -42,7 +42,7 @@ def user_enter_state_change(definition):
     if not update[1]:
         return (update[0], '')
     
-    question = 'Enter your event(s)?'
+    question = 'What is your new status?'
     valid = 'A valid response is a any text.'
 
     return user_enter(get_state_change_label, 
