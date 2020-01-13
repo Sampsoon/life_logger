@@ -3,6 +3,7 @@ import constants
 from file_utils import save_data, open_file, get_file_name_from_path
 from config_utils import config_to_functions
 from formatting_utils import new_line_pad, NEW_LINE, TAB
+from data_types.time_utils import respones_to_datetime, datatime_to_string
 
 def main():
     """
@@ -19,9 +20,39 @@ def main():
     try:
         input_functions = try_config_to_input_functions(config_path)
         data = try_get_data_from_function(input_functions)
+        data['date'] =  get_date()
+        print(NEW_LINE + constants.LINE)
         try_save_data(data, name)
     except Exception as e:
         print(e)
+
+def get_date():
+    """
+    Asks the user what the date that they are logging for and returns it.
+    void -> str
+    """
+    date_time = None
+    while date_time == None:
+        print('What date are logging for?')
+        date = input('Date: ')
+        if is_valid_date(date):
+            date_time = respones_to_datetime(date, constants.DATETIME_FORMATE_JUST_DATE)
+        else:
+            print(NEW_LINE + 'Not a valid date')
+            print('write is this formate: MM/DD/YY' + NEW_LINE)
+    return datatime_to_string(date_time, constants.DATETIME_FORMATE_JUST_DATE)
+
+def is_valid_date(date):
+    """
+    Returns true if a given date representation is valid.
+    str -> bool
+    """
+    try:
+        respones_to_datetime(date, constants.DATETIME_FORMATE_JUST_DATE)
+        return True
+    except ValueError:
+        return False
+    
 
 def try_config_to_input_functions(config_path):
     """

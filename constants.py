@@ -27,6 +27,8 @@ DATETIME_FORMATE_NORMAL = '%I:%M %p'
 
 DATETIME_FORMATE_MILITARY = '%H:%M'
 
+DATETIME_FORMATE_JUST_DATE = '%x'
+
 """
 A map of type names to input functions.
 none -> map of str to (str -> anything)
