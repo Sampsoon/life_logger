@@ -3,6 +3,8 @@ range (0,5) your energy level
 
 range (0,5) your confidence
 
+range (0,5) your neuroticism
+
 range (0,5) your focus
 
 range (0,5) your clearheadedness
