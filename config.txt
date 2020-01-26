@@ -12,7 +12,7 @@ range (0,5) your clearheadedness
 range (0,5) your positivity
 
 // Sleep:
-time sleep on sleep the tracker
+time sleep on sleep tracker
 
 time_stamp_military wake up
 
