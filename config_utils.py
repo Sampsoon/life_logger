@@ -87,14 +87,31 @@ def config_to_functions(config):
         definition = get_command_definition(line)
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
-        functions.append(type_to_input_functions[command_type](definition))
-        
+        functions.append(build_input_func(
+            type_to_input_functions[command_type](definition), 
+            command_type))
+
     if in_multiline_comment:
         message = 'Multiline comment start: ' + constants.MULTILINE_COMMENT_START
         message += ' must be inclosed with: ' + constants.MULTILINE_COMMENT_END
         raise Exception(message)
 
     return functions
+
+def build_input_func(input_func, data_type):
+    """
+    Returns a fully construced user input function when given the input function and the data type type it returns.
+    (() -> (any, str)), str -> (() -> (any, str))
+    """
+    return lambda: append_command_type(input_func, data_type)
+
+def append_command_type(user_enter, command_type):
+    """
+    Returns a the output of a user enter function function and  appends the command type to the label of the data.
+    (() -> (any, str)), str -> (any, str)
+    """
+    value = user_enter()
+    return (command_type + ' ' + value[0], value[1])
 
 def is_empty_line(line):
     """
@@ -152,7 +169,7 @@ def function_maker(input_func, perameter, perameter_verifier, exception_message)
     """
     Checks that a given peramater is valid. If so return
     a function and it's perameter returned as function object. Else, raise an exception.
-    (str -> anything), str -> (none -> anything)
+    (str -> anything), str, (str -> bool), str -> (none -> anything)
     """
     if perameter_verifier(perameter):
         return lambda: input_func(perameter)
