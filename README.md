@@ -11,7 +11,7 @@ The config allows you to specify the data that you are logging. The format consi
 You can specify comments with `//` and multiline comments with `/* ... */`
 
 ### Data types:
-`range`
+* `range`
 
 Asks the user to enter a range of integers between two values. Format: `range (a,b) "name"` Where the value must be between a inclusive and be exclusive.
 
@@ -19,35 +19,35 @@ Asks the user to enter a range of integers between two values. Format: `range (a
 
 Asks the user to enter how long something took in hours as a float. Format: `time "name"`
 
-`did_do`
+* `did_do`
 
 Asks the user to enter if they did something. Format: `did_do "name"`
 
-`note`
+* `note`
 
 Asks the user to enter any notes for something. Format: `notes "name"`
 
-`key_event`
+* `key_event`
 
 Asks the user to describe any key events surrounding something. Format: `key_event "name"`
 
-`state_change`
+* `state_change`
 
 Asks the user if the state changed for anything in their life, if so, it logs it. An example of this could be job status or housing. Format: `state_change "name"`
 
-`floating_point`
+* `floating_point`
 
 Asks the user in enter a floating point value. Format: `floating_point "name"`
 
-`integer`
+* `integer`
 
 Asks the user in enter an integer point value. Format: `integer "name"`
 
-`time_stamp_military`
+* `time_stamp_military`
 
 Asks the user in enter a time in millenary time that an event occurred. Format: `time_stamp_military "name"`
 
-`time_stamp_normal`
+* `time_stamp_normal`
 
 Asks the user in enter a time in none millenary time that an event occurred. Format: `time_stamp_normal "name"`
 
