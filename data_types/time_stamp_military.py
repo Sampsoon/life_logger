@@ -7,7 +7,7 @@ def build_time_stamp_military_function(definition):
     """
     Builds a function that gets the the data for a time_stamp_military from the user.
     Raises an error if the definition is not valid.
-    str -> () -> str or error
+    str -> str -> (() -> (label: str, value: str)) or error
     """
     return function_maker(user_enter_time_stamp_military, 
                           definition, is_valid_time_stamp_military_definition, 

@@ -4,7 +4,7 @@ def build_integer_function(definition):
     """
     Builds a function that gets the the data for a integer from the user.
     Raises an error if the definition is not valid.
-    str -> () -> int or error
+    str -> (() -> (label: str, value: int)) or error
     """
     return function_maker(user_enter_integer, 
                           definition, is_valid_integer_definition, 

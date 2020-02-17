@@ -4,7 +4,7 @@ def build_note_function(definition):
     """
     Builds a function that gets the the data for a note from the user.
     Raises an error if the definition is not valid.
-    str -> () -> str or error
+    str -> (() -> (label: str, value: str)) or error
     """
     return function_maker(user_enter_note, 
                           definition, is_valid_note_definition, 

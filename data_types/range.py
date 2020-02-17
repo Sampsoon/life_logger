@@ -5,7 +5,7 @@ def build_range_function(definition):
     """
     Builds a function that gets the the data for a range from the user.
     Raises an error if the definition is not valid.
-    str -> (none -> anything) or error
+    str -> (() -> (label: str, value: int)) or error
     """
     return function_maker(user_enter_range, 
                           definition, is_valid_range_definition, 

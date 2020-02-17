@@ -5,7 +5,7 @@ def build_key_event_function(definition):
     """
     Builds a function that gets the the data for a key event from the user.
     Raises an error if the definition is not valid.
-    str -> () -> str or error
+    str -> (() -> (label: str, value: str)) or error
     """
     return function_maker(user_enter_key_event, 
                           definition, is_valid_key_event_definition, 
