@@ -15,7 +15,7 @@ You can specify comments with `//` and multiline comments with `/* ... */`
 
 Asks the user to enter a range of integers between two values. Format: `range (a,b) "name"` Where the value must be between a inclusive and be exclusive.
 
-`time`
+* `time`
 
 Asks the user to enter how long something took in hours as a float. Format: `time "name"`
 
