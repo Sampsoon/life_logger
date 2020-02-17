@@ -8,6 +8,8 @@ It does this by allowing you to apply data science to your life. With this logge
 ## Config Scripting:
 The config allows you to specify the data that you are logging. The format consists of lines of data types followed by their names and any configurable parameters. An example can be found the `config.text`.
 
+You can specify comments with `//` and multiline comments with `/* ... */`
+
 ### Data types:
 > range
 
