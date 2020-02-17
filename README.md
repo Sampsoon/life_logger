@@ -3,7 +3,7 @@
 ## About:
 Our memories are inherently biased. It is very common for a few events to alter our perception of our past completely. We can invent memories, extend others, and change the pace of time. This project aims to counteract this by giving one an objective view of their past.
 
-It does this by allowing you to apply data science to your life. With this logger you can record your life in a structured manner. The data that is recorded is specifiable through a config file. This can consist of both numbers and strings/sudo journal entries. After that, you can run algorithms over your data to find correlations. You can use ML to build a predictive model with your data. In addition, you can use data visualization to analyze your past manually.
+It does this by allowing you to apply data science to your life. With this logger, you can record your life in a structured manner. The data that is recorded is specifiable through a config file. This can consist of both numbers and strings/sudo journal entries. After that, you can run algorithms over your data to find correlations. You can use ML to build a predictive model with your data. In addition, you can use data visualization to analyze your past manually.
 
 ## Config Scripting:
 The config allows you to specify the data that you are logging. The format consists of lines of data types followed by their names and any configurable parameters. An example can be found the `config.text`.
