@@ -12,14 +12,13 @@ range (0,5) your clearheadedness
 range (0,5) your positivity
 
 // Sleep:
-time sleep on sleep tracker
+time sleep
 
 time_stamp_military wake up
 
 // other
 time be productive outside of work
 
-// Taken from reminders app:
 did_do cold shower
 
 did_do take supplements
@@ -31,8 +30,6 @@ did_do not listen to draining music
 did_do not eat sugar
 
 // other
-
-did_do no fap
 
 did_do get exercise
 
