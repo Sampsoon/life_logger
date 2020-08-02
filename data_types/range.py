@@ -3,7 +3,7 @@ from config_utils import user_enter, function_maker
 
 def build_range_function(definition):
     """
-    Builds a function that gets the the data for a range from the user.
+    Builds a function that gets the data for a range from the user.
     Raises an error if the definition is not valid.
     str -> (() -> (label: str, value: int)) or error
     """

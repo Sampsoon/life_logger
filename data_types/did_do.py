@@ -2,7 +2,7 @@ from config_utils import user_enter, function_maker
 
 def build_did_do_function(definition):
     """
-    Builds a function that gets the the data for a did_do from the user.
+    Builds a function that gets the data for a did_do from the user.
     Raises an error if the definition is not valid.
     str -> (() -> (label: str, value: bool)) or error
     """

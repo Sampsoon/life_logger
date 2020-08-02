@@ -4,7 +4,7 @@ import constants
 
 def build_time_stamp_normal_function(definition):
     """
-    Builds a function that gets the the data for a time_stamp_normal from the user.
+    Builds a function that gets the data for a time_stamp_normal from the user.
     Raises an error if the definition is not valid.
     str -> (() -> (label: str, value: str)) or error
     """

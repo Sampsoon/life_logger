@@ -4,7 +4,7 @@ import data_types.did_do as bool_lib
 
 def build_state_change_function(definition):
     """
-    Builds a function that gets the the data for a state change from the user.
+    Builds a function that gets the data for a state change from the user.
     Raises an error if the definition is not valid.
     str -> (() -> (label: str, value: str)) or error
     """
