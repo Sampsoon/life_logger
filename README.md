@@ -90,7 +90,6 @@ Asks the user if the the a yes or no response to a question marked by quotes; if
 
 
 ## To do:
-* Increase test coverage (I know test driven development is ideal)
+* Increase test coverage (yes, I know test driven development is ideal)
 * Write data analysis algorithms
 * Write machine learning predictive algorithms
-* Possibly expand on the capabilities for the config scripting
