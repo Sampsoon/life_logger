@@ -43,14 +43,13 @@ def user_enter_state_change(definition):
         return (update[0], '')
     
     question = 'What is your new status?'
-    valid = 'A valid response is a any text.'
 
     return user_enter(get_state_change_label, 
                       user_enter_state_change_response, 
                       get_state_change_from_response,
                       is_valid_state_change_response,
                       question,
-                      valid,
+                      bool_lib.VALID_BOOL_RESPONSE,
                       definition)
 
 def get_state_change_label(definition):

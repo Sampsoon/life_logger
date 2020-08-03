@@ -79,11 +79,8 @@ def try_get_data_from_function(input_functions):
     data = {}
     
     for func in input_functions:
-        try:
-            data_to_log = func()
-            data[data_to_log[0]] = data_to_log[1]
-        except:
-            raise Exception(new_line_pad('Program Shutdown'))
+        data_to_log = func()
+        data[data_to_log[0]] = data_to_log[1]
         print(new_line_pad(constants.LINE))
         
     return data

@@ -30,6 +30,8 @@ DATETIME_FORMATE_MILITARY = '%H:%M'
 
 DATETIME_FORMATE_JUST_DATE = '%x'
 
+QUESTION_DENOTE = '"'
+
 """
 A map of type names to input functions.
 map of str to (str -> (() -> (label: str, value: any)))

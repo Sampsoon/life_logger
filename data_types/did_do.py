@@ -25,16 +25,15 @@ def user_enter_did_do(definition):
     Signature in config: did_do label
     str -> (label: str, value: bool)
     """
-    
+
     question = 'Did you {}?'
-    valid = 'A valid response is eather "y" for True or "n" for False.'
 
     return user_enter(get_did_do_label, 
                       user_enter_boolean_response, 
                       get_bool_from_response,
                       is_valid_boolean_response,
                       question,
-                      valid,
+                      VALID_BOOL_RESPONSE,
                       definition)
 
 
@@ -65,3 +64,5 @@ def is_valid_boolean_response(response):
     str -> bool
     """
     return response == 'n' or response == 'y'
+
+VALID_BOOL_RESPONSE = 'A valid response is eather "y" for True or "n" for False.'
