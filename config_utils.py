@@ -52,7 +52,6 @@ def config_to_functions(config):
     Takes in the data for a config and returns a list of functions to call the meet it's criteria.
     list of str -> list of (none -> (str, any))
     """
-    type_to_input_functions = constants.TYPE_MAP
 
     functions = []
     
@@ -82,13 +81,14 @@ def config_to_functions(config):
         check_config_line(line)
 
         command_type = get_command_type(line)
-        check_type(command_type)
+        if not is_type(command_type) and not is_complex_type(command_type):
+            on_not_valid_type(command_type)
 
         definition = get_command_definition(line)
 
         # Have to do binding because Python is retarded: https://stackoverflow.com/questions/58667027/string-values-are-passed-in-as-reference-to-a-python-lambda-for-some-reason?noredirect=1#comment103636999_58667027
         functions.append(build_input_func(
-            type_to_input_functions[command_type](definition), 
+            any_type_to_input_functions(command_type, definition), 
             command_type))
 
     if in_multiline_comment:
@@ -176,14 +176,49 @@ def function_maker(input_func, perameter, perameter_verifier, exception_message)
     
     raise Exception(exception_message)
 
-def check_type(config_type):
+def any_type_to_input_functions(type, definition):
     """
-    Checks that a given type is valid.
-    If not, throw an exception.
-    str -> none or error
+    Returns the function returned by the input function of any given type. 
+    string, string -> (str -> anything)
     """
-    if config_type not in constants.TYPE_MAP:
-        raise Exception(quote_pad(config_type) + ' is not a valid type')
+    if is_type(type):
+        return type_to_input_functions(type, definition)
+    return complex_type_to_input_functions(type, definition)
+
+def type_to_input_functions(type, definition):
+    """
+    Returns the function returned by the input function of a given type. 
+    string, string -> (str -> anything)
+    """
+    return constants.TYPE_MAP[type](definition)
+
+def complex_type_to_input_functions(type, definition):
+    """
+    Returns the function returned by the input function of a given complex type. 
+    string, string -> (str -> anything)
+    """
+    return constants.COMPLEX_TYPE_MAP[type](definition)
+
+def is_type(config_type):
+    """
+    Returns true if a given type is valid.
+    str -> bool
+    """
+    return config_type in constants.TYPE_MAP
+
+def is_complex_type(config_type):
+    """
+    Returns true if a given type is valid.
+    str -> bool
+    """
+    return config_type in constants.COMPLEX_TYPE_MAP
+
+def on_not_valid_type(type):
+    """
+    Raises the exception that occurs when a none valid type is parsed.
+    str -> exception
+    """
+    raise Exception(quote_pad(type) + ' is not a valid type')
 
 def check_config_line(line):
     """

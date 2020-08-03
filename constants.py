@@ -8,6 +8,7 @@ from data_types.floating_point import build_floating_point_function
 from data_types.integer import build_integer_function
 from data_types.time_stamp_military import build_time_stamp_military_function
 from data_types.time_stamp_normal import build_time_stamp_normal_function
+from data_types.if_yes import build_if_yes_function
 
 COMMENT_OUT_STRING = '//'
 
@@ -31,7 +32,7 @@ DATETIME_FORMATE_JUST_DATE = '%x'
 
 """
 A map of type names to input functions.
-none -> map of str to (str -> anything)
+map of str to (str -> (() -> (label: str, value: any)))
 """
 TYPE_MAP = {
         'range' : build_range_function,
@@ -44,4 +45,14 @@ TYPE_MAP = {
         'integer' : build_integer_function,
         'time_stamp_military' : build_time_stamp_military_function,
         'time_stamp_normal' : build_time_stamp_normal_function
+        }
+
+"""
+A map of complex types to input functions.
+A complex type is defined as a type that references the TYPE_MAP in its logic.
+This is used so that there are no circular dependencies.
+map of str to (str -> (() -> (label: str, value: any)))
+"""
+COMPLEX_TYPE_MAP = {
+        'if_yes' : build_if_yes_function
         }

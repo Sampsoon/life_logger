@@ -12,16 +12,15 @@ range (0,5) your clearheadedness
 range (0,5) your positivity
 
 // Sleep:
-time sleep
+time sleep on sleep tracker
 
-time_stamp_military wake up
+time_stamp_normal wake up
 
-// other
+// other:
 time be productive outside of work
 
-did_do cold shower
-
-did_do take supplements
+// Habits:
+did_do get up quickly in the morning
 
 did_do meditate
 
@@ -29,11 +28,15 @@ did_do not listen to draining music
 
 did_do not eat sugar
 
-// other
+// Other
 
-did_do get exercise
+if_yes "Did you exercise today?" time_stamp_normal exercise
 
-integer calories consumed
+time spend socializing
+
+range (0,5) the calories you consumed
+
+// Notes and events
 
 key_event any events
 
