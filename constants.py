@@ -32,6 +32,8 @@ DATETIME_FORMATE_JUST_DATE = '%x'
 
 QUESTION_DENOTE = '"'
 
+WHEN_NOTHING_TO_lOG = ''
+
 """
 A map of type names to input functions.
 map of str to (str -> (() -> (label: str, value: any)))

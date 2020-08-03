@@ -55,7 +55,7 @@ def user_enter_if_yes(definition):
 
     # If the user enters "yes"
     if not update[1]:
-        return (update[0], '')
+        return (update[0], constants.WHEN_NOTHING_TO_lOG)
     
     if_true = get_data_logged_on_true(definition)
     data_type = get_command_type(if_true)

@@ -1,5 +1,6 @@
 from config_utils import user_enter, function_maker
 import data_types.did_do as bool_lib
+import constants
 
 
 def build_state_change_function(definition):
@@ -40,7 +41,7 @@ def user_enter_state_change(definition):
     
     # If the user enters "yes"
     if not update[1]:
-        return (update[0], '')
+        return (update[0], constants.WHEN_NOTHING_TO_lOG)
     
     question = 'What is your new status?'
 
