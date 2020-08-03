@@ -45,7 +45,7 @@ def user_enter_if_yes(definition):
     """
     update_question = get_question_text(definition)
     
-    update = user_enter(get_if_yes_label, 
+    update = user_enter(get_question_text, 
                       bool_lib.user_enter_boolean_response, 
                       bool_lib.get_bool_from_response,
                       bool_lib.is_valid_boolean_response,
@@ -71,14 +71,6 @@ def get_question_text(definition):
     str -> str
     """
     return definition.split(constants.QUESTION_DENOTE, 1)[1].rsplit(constants.QUESTION_DENOTE, 1)[0]
-
-
-def get_if_yes_label(definition):
-    """
-    Given a valid key event definition, returns its label.
-    str -> str
-    """
-    return definition
 
 def get_data_logged_on_true(definition):
     """
