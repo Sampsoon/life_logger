@@ -13,47 +13,53 @@ You can specify comments with `//` and multiline comments with `/* ... */`
 ### Data types:
 * `range`
 
-Asks the user to enter a range of integers between two values. Format: `range (a,b) "name"` Where the value must be between a inclusive and be exclusive.
+Asks the user to enter a range of integers between two values. **Format:** `range (a,b) "name"` Where the value must be between a inclusive and be exclusive.
 
 * `time`
 
-Asks the user to enter how long something took in hours as a float. Format: `time "name"`
+Asks the user to enter how long something took in hours as a float. **Format:** `time "name"`
 
 * `did_do`
 
-Asks the user to enter if they did something. Format: `did_do "name"`
+Asks the user to enter if they did something. **Format:** `did_do "name"`
 
 * `note`
 
-Asks the user to enter any notes for something. Format: `notes "name"`
+Asks the user to enter any notes for something. **Format:** `notes "name"`
 
 * `key_event`
 
-Asks the user to describe any key events surrounding something. Format: `key_event "name"`
+Asks the user to describe any key events surrounding something. **Format:** `key_event "name"`
 
 * `state_change`
 
-Asks the user if the state changed for anything in their life, if so, it logs it. An example of this could be job status or housing. Format: `state_change "name"`
+Asks the user if the state changed for anything in their life, if so, it logs it. An example of this could be job status or housing. **Format:** `state_change "name"`
 
 * `floating_point`
 
-Asks the user in enter a floating point value. Format: `floating_point "name"`
+Asks the user in enter a floating point value. **Format:** `floating_point "name"`
 
 * `integer`
 
-Asks the user in enter an integer point value. Format: `integer "name"`
+Asks the user in enter an integer point value. **Format:** `integer "name"`
 
 * `time_stamp_military`
 
-Asks the user in enter a time in millenary time that an event occurred. Format: `time_stamp_military "name"`
+Asks the user in enter a time in millenary time that an event occurred. **Format:** `time_stamp_military "name"`
 
 * `time_stamp_normal`
 
-Asks the user in enter a time in none millenary time that an event occurred. Format: `time_stamp_normal "name"`
+Asks the user in enter a time in none millenary time that an event occurred. **Format:** `time_stamp_normal "name"`
+
+### Complex Data Types:
+
+* `if_yes`
+
+Asks the user if the the a yes or no response to a question marked by quotes; if the user's answer is yes, it asks the user to log a given value. **Format:** `if_yes "Did you exercise today?" time_stamp_normal exercise` **Note:** you can not nest other complex types in this. For example, `if_yes "Did you exercise today?" if_yes "Did you weight train?" time_stamp_normal exercise` would not work.
 
 ## Installation:
 1. First download Python 3 and add it to your system paths.
-2. Then run `pip install Pandas` in your cmd
+2. Then run `pip install Pandas` in terminal
 3. Then clone the repository
 
 ## How To Run
@@ -77,10 +83,10 @@ Asks the user in enter a time in none millenary time that an event occurred. For
 * The main method in is `start.py`
 * All the data types that can be logged are in `./data_types` These are written as methods that take in user input through I/O and return the data.
 
-### To create a new data type: 
-* You must make use of the `function_maker` method in `config_utils.py` to build your method. 
+### To create a new data type:
+* You must make use of the `function_maker` method in `config_utils.py` to build your method.
 * When defining the user input method as a perimeter for `function_maker` use `user_enter.py` in `config_utils.py` It is best to look to the code to see how this is done.
-* After that you must add your data type to `TYPE_MAP` in `constants.py` with the key as the keyword that will be used to specify this type in the config.
+* After that you must add your data type to `TYPE_MAP` or `COMPLEX_TYPE_MAP` in `constants.py` with the key as the keyword that will be used to specify this type in the config. Complex types are defined as any type that references the types in `TYPE_MAP`. Unless this is true, you should add your new type to `TYPE_MAP`.
 
 
 ## To do:
