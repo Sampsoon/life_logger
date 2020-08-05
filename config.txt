@@ -1,4 +1,4 @@
-// Emotional state being tracked:
+// Emotional state tracked:
 range (0,5) your energy level
 
 range (0,5) your confidence
@@ -29,7 +29,6 @@ did_do not listen to draining music
 did_do not eat sugar
 
 // Other
-
 if_yes "Did you exercise today?" time_stamp_normal exercise
 
 time spend socializing
