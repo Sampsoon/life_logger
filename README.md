@@ -63,7 +63,8 @@ Asks the user if the the a yes or no response to a question marked by quotes; if
 3. Then clone the repository
 
 ## How To Run
-    python ./start.py
+* On windows run `run_windows.bat`
+* On Unix run `run_unix.sh`
 * All saves will be saved to ./saves. 
 * There will be a backup saved file created on every run, so no need to worry about making mistakes when logging.
 * The config data can be specified in the config.txt
