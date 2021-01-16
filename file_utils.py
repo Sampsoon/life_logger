@@ -1,4 +1,4 @@
-import pandas
+import pandas as pd
 import constants
 from os import path, rename, remove
 
@@ -41,7 +41,7 @@ def add_data_to_file(data, file_path):
     Adds data a scv file.
     data frame, str -> void
     """
-    file_data = pandas.read_csv(file_path)
+    file_data = pd.read_csv(file_path, index_col=0)
     new_data = file_data.append(data, ignore_index=True, sort=True)
     remove_old_backup(file_path)
     make_file_backup(file_path)
@@ -92,7 +92,7 @@ def data_to_data_frame(data):
     dic str to any -> data frame
     """
     data = dic_values_to_list(data)
-    return pandas.DataFrame(data)
+    return pd.DataFrame(data)
 
 def dic_values_to_list(dic):
     """
