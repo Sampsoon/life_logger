@@ -64,7 +64,7 @@ def user_enter_time_stamp_normal_response():
     Prompts the user to enter a time_stamp_normal response.
     nothing -> str
     """
-    return input('Time:')
+    return input('Time: ')
     
 def get_time_stamp_normal_label(definition):
     """
