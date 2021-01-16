@@ -58,8 +58,15 @@ Asks the user in enter a time in none millenary time that an event occurred. **F
 Asks the user if the the a yes or no response to a question marked by quotes; if the user's answer is yes, it asks the user to log a given value. **Format:** `if_yes "Did you exercise today?" time_stamp_normal exercise` **Note:** you can not nest other complex types in this. For example, `if_yes "Did you exercise today?" if_yes "Did you weight train?" time_stamp_normal exercise` would not work.
 
 ## Installation:
-1. First download Python 3 and add it to your system paths.
-2. Then run `pip install Pandas` in terminal
+Windows:
+1. First download Python 3 and add it to your system paths
+2. `pip install Pandas`
+3. Then clone the repository
+
+Debian:
+1. `sudo apt install python3`
+2. `sudo apt install python3-pip`
+3. `pip3 install pandas`
 3. Then clone the repository
 
 ## How To Run
@@ -88,7 +95,6 @@ Asks the user if the the a yes or no response to a question marked by quotes; if
 * You must make use of the `function_maker` method in `config_utils.py` to build your method.
 * When defining the user input method as a perimeter for `function_maker` use `user_enter.py` in `config_utils.py` It is best to look to the code to see how this is done.
 * After that you must add your data type to `TYPE_MAP` or `COMPLEX_TYPE_MAP` in `constants.py` with the key as the keyword that will be used to specify this type in the config. Complex types are defined as any type that references the types in `TYPE_MAP`. Unless this is true, you should add your new type to `TYPE_MAP`.
-
 
 ## To do:
 * Increase test coverage (yes, I know test driven development is ideal)
