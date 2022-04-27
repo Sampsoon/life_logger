@@ -96,7 +96,7 @@ Debian:
 * When defining the user input method as a perimeter for `function_maker` use `user_enter.py` in `config_utils.py` It is best to look to the code to see how this is done.
 * After that you must add your data type to `TYPE_MAP` or `COMPLEX_TYPE_MAP` in `constants.py` with the key as the keyword that will be used to specify this type in the config. Complex types are defined as any type that references the types in `TYPE_MAP`. Unless this is true, you should add your new type to `TYPE_MAP`.
 
-## To do
+## Todo
 * Increase test coverage (yes, I know test driven development is ideal)
 * Write data analysis algorithms
 * Write machine learning predictive algorithms
