@@ -97,6 +97,6 @@ Debian:
 * After that you must add your data type to `TYPE_MAP` or `COMPLEX_TYPE_MAP` in `constants.py` with the key as the keyword that will be used to specify this type in the config. Complex types are defined as any type that references the types in `TYPE_MAP`. Unless this is true, you should add your new type to `TYPE_MAP`.
 
 ## Todo
-* Increase test coverage (yes, I know test driven development is ideal)
+* Write end to end tests
 * Write data analysis algorithms
 * Write machine learning predictive algorithms
